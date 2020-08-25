@@ -11,7 +11,7 @@
         <div class="carousel-inner">
           <div class="carousel-item active" style="max-height:500px">
             <img
-              style=""
+              style
               src="../../../assets/imgs/carousel0102.jpg"
               class="d-block w-100 position-relative"
             />
@@ -22,23 +22,32 @@
               style="top:40%;left:75%;"
             >
               <div
-                class=" bg-white rounded-circle d-flex flex-column
-                justify-content-center align-items-center"
+                class="bg-white rounded-circle d-flex flex-column justify-content-center align-items-center"
                 style="width:150px;height:150px"
               >
-                <span class="text-center h6">2020<br />A/W LookBook</span>
+                <span class="text-center h6">
+                  2020
+                  <br />A/W LookBook
+                </span>
               </div>
             </a>
           </div>
           <div class="carousel-item" style="max-height:500px">
             <img
-              style=""
+              style
               src="../../../assets/imgs/carousel0202.jpg"
               class="d-block w-100 position-relative"
             />
-            <div class="d-none d-md-block text-white  position-absolute" style="top:20%;left:15%">
-              <p class="mb-0 h2 font-weight-bold"><u>世界上</u> ,</p>
-              <p class="mb-3 h2 font-weight-bold"><u>只有你最了解自己</u></p>
+            <div
+              class="d-none d-md-block text-white position-absolute"
+              style="top:20%;left:15%"
+            >
+              <p class="mb-0 h2 font-weight-bold">
+                <u>世界上</u> ,
+              </p>
+              <p class="mb-3 h2 font-weight-bold">
+                <u>只有你最了解自己</u>
+              </p>
               <!--ROUTER LINK-->
               <router-link to="/products/all" class="btn btn-secondary">了解更多</router-link>
             </div>
@@ -68,14 +77,14 @@
     <div class="row my-5">
       <div class="col text-center">
         <p class="quote mb-0">
-          " 時尚易逝，風格永存。"<br /><span class="font-italic h4"
-            >- Gabrielle Bonheur Claire</span
-          >
+          " 時尚易逝，風格永存。"
+          <br />
+          <span class="font-italic h4">- Gabrielle Bonheur Claire</span>
         </p>
       </div>
     </div>
     <!--SLICK CAROUSEL-->
-   <div class="slider">
+    <div class="slider">
       <div class="item" v-for="product in products" :key="product.id">
         <div
           class="bg-cover"
@@ -89,16 +98,22 @@
       <div class="col-12 text-center">
         <p class="h3">選擇適合你的產品</p>
       </div>
-      <div class="col-md-6 mt-3 d-flex justify-content-around ">
-        <router-link tag="button" to="/products/lip" class="btn btn-lg btn-secondary "
-          >唇彩</router-link
-        >
-        <router-link tag="button" to="/products/blush" class="btn btn-lg btn-secondary "
-          >腮紅</router-link
-        >
-        <router-link tag="button" to="/products/nail" class="btn btn-lg btn-secondary"
-          >指彩</router-link
-        >
+      <div class="col-md-6 mt-3 d-flex justify-content-around">
+        <router-link
+          tag="button"
+          to="/products/lip"
+          class="btn btn-lg btn-secondary"
+        >唇彩</router-link>
+        <router-link
+          tag="button"
+          to="/products/blush"
+          class="btn btn-lg btn-secondary"
+        >腮紅</router-link>
+        <router-link
+          tag="button"
+          to="/products/nail"
+          class="btn btn-lg btn-secondary"
+        >指彩</router-link>
       </div>
     </div>
     <!--CUBE-->
@@ -108,9 +123,11 @@
       >
         <p class="h2">CLAIRE's代表的是...</p>
         <p>一種歷久彌新的獨特風格。</p>
-        <router-link to="/products/all" tag="button" class="btn btn-sm btn-secondary"
-          >了解更多</router-link
-        >
+        <router-link
+          to="/products/all"
+          tag="button"
+          class="btn btn-sm btn-secondary"
+        >了解更多</router-link>
       </div>
       <div class="col-md-6 mb-3 mb-md-0">
         <div class="bg-cover head01" style="height:300px"></div>
@@ -160,43 +177,42 @@ export default {
   },
   updated() {
     $(document).ready(() => {
-        $('.slider').slick({
-          infinite: true,
-          dots: true,
-          arrows: false,
-          autoplay: true,
-          autoplaySpeed: 2000,
-          speed: 2000,
-          slidesToShow: 4,
-          slidesToScroll: 1,
-          responsive: [
-            {
-              breakpoint: 1024,
-              settings: {
-                slidesToShow: 4,
-                slidesToScroll: 1,
-                infinite: true,
-              },
+      $('.slider').slick({
+        infinite: true,
+        dots: true,
+        arrows: false,
+        autoplay: true,
+        autoplaySpeed: 2000,
+        speed: 2000,
+        slidesToShow: 4,
+        slidesToScroll: 1,
+        responsive: [
+          {
+            breakpoint: 1024,
+            settings: {
+              slidesToShow: 4,
+              slidesToScroll: 1,
+              infinite: true,
             },
-            {
-              breakpoint: 1000,
-              settings: {
-                slidesToShow: 2,
-                slidesToScroll: 1,
-              },
+          },
+          {
+            breakpoint: 1000,
+            settings: {
+              slidesToShow: 2,
+              slidesToScroll: 1,
             },
-            {
-              breakpoint: 480,
-              settings: {
-                slidesToShow: 1,
-                slidesToScroll: 1,
-              },
+          },
+          {
+            breakpoint: 480,
+            settings: {
+              slidesToShow: 1,
+              slidesToScroll: 1,
             },
-          ],
-        });
+          },
+        ],
       });
-
-    },
+    });
+  },
 };
 </script>
 

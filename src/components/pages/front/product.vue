@@ -1,16 +1,17 @@
 <template>
   <div>
     <div class="row mt-3 d-flex align-items-center justify-content-center">
-      <div class="col-md-10 pl-5 pt-5 bg-cover product-header " style="height:350px">
-        <p class="h3 text-primary font-weight-bolder">
-          2020秋冬 全新感受
-        </p>
-        <small class="d-block mb-3 text-primary">
-          CLAIRE'S團隊打造的新色彩美學
-        </small>
-        <router-link to="/checkout" tag="button" class="btn btn-sm btn-primary"
-          >查看購物車</router-link
-        >
+      <div
+        class="col-md-10 pl-5 pt-5 bg-cover product-header"
+        style="height:350px"
+      >
+        <p class="h3 text-primary font-weight-bolder">2020秋冬 全新感受</p>
+        <small class="d-block mb-3 text-primary">CLAIRE'S團隊打造的新色彩美學</small>
+        <router-link
+          to="/checkout"
+          tag="button"
+          class="btn btn-sm btn-primary"
+        >查看購物車</router-link>
       </div>
     </div>
 
@@ -39,11 +40,11 @@
               <p class="card-text mb-1">{{ product.description }}</p>
               <small class="mb-3">{{ product.price | currency }}</small>
               <!--<p class="card-text">{{product.content}}</p> -->
-              <small class="d-block"
-                ><router-link :to="{ name: 'detail', params: { id: product.id } }"
-                  >查看詳情</router-link
-                ></small
-              >
+              <small class="d-block">
+                <router-link
+                  :to="{ name: 'detail', params: { id: product.id } }"
+                >查看詳情</router-link>
+              </small>
               <small class="d-block">
                 <a href="#" @click.prevent="addToCart(product.id)">
                   <i class="fas fa-shopping-cart"></i>
@@ -56,6 +57,7 @@
       </div>
     </transition-group>
     <!--Pagination-->
+    <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt eius quae aliquid placeat reprehenderit velit accusamus suscipit aliquam expedita sunt beatae excepturi fugiat corporis numquam ab, aperiam et ad accusantium?Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perspiciatis unde est pariatur sed debitis cum, nesciunt nihil soluta minus non laboriosam maiores enim nobis quis sit harum placeat voluptate Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit, iusto? Nam, maiores blanditiis, aliquam et quas reiciendis sed sapiente voluptas quos temporibus incidunt nobis error exercitationem! Nisi deserunt natus perferendis? Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam, aliquam odit reiciendis fugiat ipsa temporibus eum quasi in doloribus fuga aspernatur blanditiis! Ex odio corrupti eum cumque aspernatur aperiam cupiditate.</span>
     <Pagination :pages="pagination" v-on:change-page="getProducts" />
   </div>
 </template>
