@@ -57,7 +57,6 @@
       </div>
     </transition-group>
     <!--Pagination-->
-    <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt eius quae aliquid placeat reprehenderit velit accusamus suscipit aliquam expedita sunt beatae excepturi fugiat corporis numquam ab, aperiam et ad accusantium?Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perspiciatis unde est pariatur sed debitis cum, nesciunt nihil soluta minus non laboriosam maiores enim nobis quis sit harum placeat voluptate Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit, iusto? Nam, maiores blanditiis, aliquam et quas reiciendis sed sapiente voluptas quos temporibus incidunt nobis error exercitationem! Nisi deserunt natus perferendis? Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam, aliquam odit reiciendis fugiat ipsa temporibus eum quasi in doloribus fuga aspernatur blanditiis! Ex odio corrupti eum cumque aspernatur aperiam cupiditate.</span>
     <Pagination :pages="pagination" v-on:change-page="getProducts" />
   </div>
 </template>
