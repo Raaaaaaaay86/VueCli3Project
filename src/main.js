@@ -8,7 +8,7 @@ import './bus';
 import 'bootstrap'
 import 'owl.carousel/dist/assets/owl.carousel.css';
 import 'owl.carousel/dist/assets/owl.theme.default.css';
-import 'owl.carousel';
+// import 'owl.carousel';
 import Loading from 'vue-loading-overlay';
 import 'vue-loading-overlay/dist/vue-loading.css';
 import { ValidationProvider,ValidationObserver} from 'vee-validate';
