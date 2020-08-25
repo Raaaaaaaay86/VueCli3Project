@@ -16,27 +16,27 @@ import CouponList from '@/components/pages/dashboard/couponList.vue';
 import OrderList from '@/components/pages/dashboard/orderList.vue';
 
 Vue.use(VueRouter);
-Vue.use(Vueaxios,axios);
+Vue.use(Vueaxios, axios);
 
-const routes =  [
+const routes = [
   {
-    path:'*',
-    redirect:'/'
+    path: '*',
+    redirect: '/',
   },
   {
     path: '/',
     name: 'front',
     component: Index,
-    children:[
+    children: [
       {
         path: '/',
         name: 'home',
         component: Home,
-        beforeEnter: (to,from,next) =>{
-          //test
+        beforeEnter: (to, from, next) => {
+          // test
           // if(from.name === null){
           //   next()
-          // }else if(from.matched[0].path === '/admin'){                             
+          // }else if(from.matched[0].path === '/admin'){
           //     next(`/admin/virtual${to.fullPath}`)
           // }else{
           //   next()
@@ -48,30 +48,27 @@ const routes =  [
         path: '/products/:cat',
         name: 'products',
         component: Products,
-        beforeEnter: (to,from,next) =>{
-
-          if(from.name === null){
-            next()
-          }else if(from.matched[0].path === '/admin'){                                      
-              next(`/admin/virtual${to.fullPath}`)
-          }else{
-            next()
+        beforeEnter: (to, from, next) => {
+          if (from.name === null) {
+            next();
+          } else if (from.matched[0].path === '/admin') {
+            next(`/admin/virtual${to.fullPath}`);
+          } else {
+            next();
           }
-
         },
       },
       {
         path: '/detail/:id',
         name: 'detail',
         component: Detail,
-        beforeEnter: (to,from,next) =>{
-
-          if(from.name === null){
-            next()
-          }else if(from.matched[0].path === '/admin'){                             
-            next(`/admin/virtual${to.fullPath}`)
-          }else{
-            next()
+        beforeEnter: (to, from, next) => {
+          if (from.name === null) {
+            next();
+          } else if (from.matched[0].path === '/admin') {
+            next(`/admin/virtual${to.fullPath}`);
+          } else {
+            next();
           }
         },
       },
@@ -79,78 +76,74 @@ const routes =  [
         path: '/checkout',
         name: 'checkout',
         component: Checkout,
-        beforeEnter: (to,from,next) =>{
-
-          if(from.name === null){
-            next()
-          }else if(from.matched[0].path === '/admin'){                             
-            next(`/admin/virtual${to.fullPath}`)
-          }else{
-            next()
+        beforeEnter: (to, from, next) => {
+          if (from.name === null) {
+            next();
+          } else if (from.matched[0].path === '/admin') {
+            next(`/admin/virtual${to.fullPath}`);
+          } else {
+            next();
           }
-
         },
       },
       {
-        path:'/order-confirm/:orderId',
-        name:'oreder-confirm',
-        component:OrderConfrim,
-        beforeEnter: (to,from,next) =>{
-
-          if(from.name === null){
-            next()
-          }else if(from.matched[0].path === '/admin'){                             
-              next(`/admin/virtual${to.fullPath}`)
-          }else{
-            next()
+        path: '/order-confirm/:orderId',
+        name: 'oreder-confirm',
+        component: OrderConfrim,
+        beforeEnter: (to, from, next) => {
+          if (from.name === null) {
+            next();
+          } else if (from.matched[0].path === '/admin') {
+            next(`/admin/virtual${to.fullPath}`);
+          } else {
+            next();
           }
-
         },
       },
       {
-        path:"about-claires",
-        name:"About-claires",
+        path: 'about-claires',
+        name: 'About-claires',
         component: LookBook,
-      }
-    ]
+      },
+    ],
   },
   {
-    path:'/login',
-    name:'login',
+    path: '/login',
+    name: 'login',
     component: Login,
   },
 
   {
-    path:'/admin',
-    name:'admin',
+    path: '/admin',
+    name: 'admin',
     component: Dashboard,
-    meta:{requireAuth:true},
-    children:[
+    meta: { requireAuth: true },
+    children: [
       {
-        path:'product-list',
-        name:'product-list',
+        path: 'product-list',
+        name: 'product-list',
         component: ProductList,
-        meta:{requiresAuth: true}
+        meta: { requiresAuth: true },
 
       },
       {
-        path:'coupon-list',
-        name:'coupon-list',
+        path: 'coupon-list',
+        name: 'coupon-list',
         component: CouponList,
-        meta:{requiresAuth: true}
+        meta: { requiresAuth: true },
 
       },
       {
-        path:'order-list',
-        name:'order-list',
+        path: 'order-list',
+        name: 'order-list',
         component: OrderList,
-        meta:{requiresAuth: true}
+        meta: { requiresAuth: true },
       },
       {
         path: 'virtual',
         name: 'Adminfront',
         component: Index,
-        children:[
+        children: [
           {
             path: '/',
             name: 'Adminhome',
@@ -172,14 +165,14 @@ const routes =  [
             component: Checkout,
           },
           {
-            path:'order-confirm/:orderId',
-            name:'Adminoreder-confirm',
-            component:OrderConfrim,
-          }
-        ]
-      }
-    ]
-  }
+            path: 'order-confirm/:orderId',
+            name: 'Adminoreder-confirm',
+            component: OrderConfrim,
+          },
+        ],
+      },
+    ],
+  },
 ];
 
 const router = new VueRouter({

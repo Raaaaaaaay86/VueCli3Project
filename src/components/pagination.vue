@@ -1,37 +1,40 @@
 <template>
-    <div class="row d-flex justify-content-center">
-        <nav aria-label="Page navigation example">
-            <ul class="pagination">
-               
-                <li class="page-item" :class="{ 'disabled' : !pages.has_pre}" >
-                <a class="page-link" href="#" aria-label="Previous" @click.prevent="$emit('change-page',pages.current_page - 1)">
-                    <span aria-hidden="true">&laquo;</span>
-                </a>
-                </li>
-               
-                <li class="page-item"
-                    v-for="(page,index) in pages.total_pages" :key="index">
-                <a class="page-link" href="#" @click.prevent="$emit('change-page',page)">{{page}}</a>
-                </li>
-               
-                <li class="page-item" :class="{ 'disabled' : !pages.has_next}">
-                <a class="page-link" href="#" aria-label="Next" @click.prevent="$emit('change-page',pages.current_page + 1)">
-                    <span aria-hidden="true">&raquo;</span>
-                </a>
-                </li>
-            </ul>
-        </nav>
-    </div>
-</template>
+  <div class="row d-flex justify-content-center">
+    <nav aria-label="Page navigation example">
+      <ul class="pagination">
+        <li class="page-item" :class="{ disabled: !pages.has_pre }">
+          <a
+            class="page-link"
+            href="#"
+            aria-label="Previous"
+            @click.prevent="$emit('change-page', pages.current_page - 1)"
+          >
+            <span aria-hidden="true">&laquo;</span>
+          </a>
+        </li>
 
+        <li class="page-item" v-for="(page, index) in pages.total_pages" :key="index">
+          <a class="page-link" href="#" @click.prevent="$emit('change-page', page)">{{ page }}</a>
+        </li>
+
+        <li class="page-item" :class="{ disabled: !pages.has_next }">
+          <a
+            class="page-link"
+            href="#"
+            aria-label="Next"
+            @click.prevent="$emit('change-page', pages.current_page + 1)"
+          >
+            <span aria-hidden="true">&raquo;</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</template>
 
 <script>
 
-//記得導入Props:pages 給 component tag
-// emitter 接收器 'change-page'
-//ex: <Pagination :pages="pagination"  v-on:change-page="getOrders"/>
-
 export default {
-    props:['pages']
-}
+  props: ['pages'],
+};
 </script>
