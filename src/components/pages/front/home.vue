@@ -74,14 +74,14 @@
         </p>
       </div>
     </div>
-    <!--OWL CAROUSEL-->
-    <div class="row">
-      <div class="col">
-        <div class="owl-carousel owl-theme">
-          <div class="item" v-for="product in products" :key="product.id">
-            <img width="270" height="270" :src="product.imageUrl" />
-          </div>
-        </div>
+    <!--SLICK CAROUSEL-->
+   <div class="slider">
+      <div class="item" v-for="product in products" :key="product.id">
+        <div
+          class="bg-cover"
+          style="width:270px;height:270px"
+          :style="{ backgroundImage: 'url(' + product.imageUrl + ')' }"
+        ></div>
       </div>
     </div>
     <!--QUOTE-->
@@ -133,6 +133,9 @@
 
 <script>
 import $ from 'jquery';
+import 'slick-carousel';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 
 export default {
   data() {
@@ -157,28 +160,43 @@ export default {
   },
   updated() {
     $(document).ready(() => {
-      $('.owl-carousel').owlCarousel({
-        loop: true,
-        margin: 10,
-        nav: false,
-        autoplay: true,
-        autoplayTimeout: 3000,
-        autoplayHoverPause: true,
-        smartSpeed: 2000,
-        responsive: {
-          0: {
-            items: 1,
-          },
-          600: {
-            items: 3,
-          },
-          1000: {
-            items: 4,
-          },
-        },
+        $('.slider').slick({
+          infinite: true,
+          dots: true,
+          arrows: false,
+          autoplay: true,
+          autoplaySpeed: 2000,
+          speed: 2000,
+          slidesToShow: 4,
+          slidesToScroll: 1,
+          responsive: [
+            {
+              breakpoint: 1024,
+              settings: {
+                slidesToShow: 4,
+                slidesToScroll: 1,
+                infinite: true,
+              },
+            },
+            {
+              breakpoint: 1000,
+              settings: {
+                slidesToShow: 2,
+                slidesToScroll: 1,
+              },
+            },
+            {
+              breakpoint: 480,
+              settings: {
+                slidesToShow: 1,
+                slidesToScroll: 1,
+              },
+            },
+          ],
+        });
       });
-    });
-  },
+
+    },
 };
 </script>
 
