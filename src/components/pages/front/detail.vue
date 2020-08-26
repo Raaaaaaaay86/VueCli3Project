@@ -1,5 +1,7 @@
 <template>
   <div class="row my-5">
+    <loading :active.sync="isLoading"></loading>
+
     <transition name="fade">
       <div class="col-md-6" v-if="product.title">
         <img :src="product.imageUrl" class="h-100 w-100" />
@@ -33,7 +35,7 @@
           <div class="col-md-6 d-flex align-items-end">
             <div class="form-group w-100 mb-0">
               <label for="productNum">選購商品數量</label>
-              <select class="form-control" id="productNum" v-model="product.num">
+              <select class="form-control" id="productNum" v-model="qty">
                 <option v-for="num in 5" :key="num" :value="num"
                   >{{ num }} {{ product.unit }}</option
                 >
@@ -44,8 +46,11 @@
             class="col-md-3 mt-3 mt-md-0 d-flex align-items-end
             justify-content-sm-start justify-content-md-end"
           >
-            <button class="btn btn-primary" @click.prevent="addToCart(product.id, product.num)">
+            <button v-if="!clicked" class="btn btn-primary" @click.prevent="addToCart(product.id, qty)">
               加入購物車
+            </button>
+            <button v-else class="btn btn-primary">
+              加入中<i class="fas fa-spinner fa-spin ml-1"></i>
             </button>
           </div>
         </div>
@@ -60,13 +65,14 @@ export default {
   data() {
     return {
       product: {},
-      isLoading: false,
+      clicked: false,
+      isUpdating: false,
+      qty: 1,
     };
   },
   methods: {
     getSingle() {
       const vm = this;
-      // productId = vm.$route.params.id;
       const api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_CUSTOM}/product/${vm.$route.params.id}`;
       vm.isLoading = true;
 
@@ -78,11 +84,14 @@ export default {
     addToCart(id, qty = 1) {
       const vm = this;
       const api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_CUSTOM}/cart`;
-
       const data = { product_id: id, qty };
+      vm.clicked = true;
 
       vm.$http.post(api, { data }).then(() => {
         this.$bus.$emit('reupdateCarts');
+        setTimeout(() => {
+          vm.clicked = false;
+        }, 500);
       });
     },
   },

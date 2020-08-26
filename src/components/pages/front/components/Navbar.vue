@@ -3,8 +3,7 @@
     <div class="row mt-3 mt-md-0">
       <div class="col px-0">
         <nav
-          class=" navbar navbar-expand-lg border-bottom
-          border-primary navbar-light bg-white justify-content-between"
+          class="navbar navbar-expand-lg border-bottom border-primary navbar-light bg-white justify-content-between"
         >
           <button
             class="navbar-toggler"
@@ -22,7 +21,7 @@
               height="30"
               class="text-dark d-block d-md-none"
               src="../../../../assets/imgs/cocologo.svg"
-              alt=""
+              alt
             />
           </router-link>
           <div class="d-bolck d-md-none">
@@ -51,7 +50,10 @@
                   <i v-if="isUpdating" class="fas fa-spinner fa-spin"></i>
                   <i class="fas fa-shopping-cart"></i>
                 </span>
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+                <div
+                  class="dropdown-menu dropdown-menu-right"
+                  aria-labelledby="dropdownMenuButton"
+                >
                   <table class="table table-borderless table-hover mb-0">
                     <thead>
                       <tr>
@@ -66,21 +68,27 @@
                         <td>
                           <button
                             class="btn btn-outline-primary"
-                            @click.prevent="removeCart(cart.id)"
+                            @click.prevent="removeCart(cart.product_id)"
                           >
                             <i class="fas fa-trash-alt"></i>
                           </button>
                         </td>
                         <td>{{ cart.product.title }}</td>
                         <td>{{ cart.qty }}{{ cart.product.unit }}</td>
-                        <td class="text-right">{{ (cart.product.price * cart.qty) | currency }}</td>
+                        <td
+                          class="text-right"
+                        >{{ (cart.product.price * cart.qty) | currency }}</td>
                       </tr>
                     </tbody>
                   </table>
-                  <div class="px-5 mt-3 d-flex justify-content-sm-center align-items-sm-center">
-                    <router-link to="/checkout" tag="button" class="btn btn-sm btn-primary w-100"
-                      >結帳去</router-link
-                    >
+                  <div
+                    class="px-5 mt-3 d-flex justify-content-sm-center align-items-sm-center"
+                  >
+                    <router-link
+                      to="/checkout"
+                      tag="button"
+                      class="btn btn-sm btn-primary w-100"
+                    >結帳去</router-link>
                   </div>
                 </div>
               </div>
@@ -98,6 +106,7 @@ export default {
     return {
       carts: [],
       isUpdating: false,
+      orderIdList: [],
     };
   },
   methods: {
@@ -105,24 +114,44 @@ export default {
       const vm = this;
       vm.isUpdating = true;
       const api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_CUSTOM}/cart`;
-
+      vm.carts = [];
+      vm.orderIdList = [];
       vm.$http.get(api).then((response) => {
-        vm.carts = response.data.data.carts;
+        const fetched = response.data.data.carts;
+        fetched.forEach((el) => {
+          if (vm.carts.some((cart) => cart.product_id === el.product_id)) {
+            const index = vm.carts.findIndex((item) => item.product_id === el.product_id);
+            const idIndex = vm.orderIdList.findIndex((item) => item[0] === el.product_id);
+            vm.carts[index].qty += el.qty;
+            vm.orderIdList[idIndex].push(el.id);
+          } else {
+            const orderAry = [];
+            vm.carts.push(el);
+            orderAry.push(el.product_id, el.id);
+            vm.orderIdList.push(orderAry);
+          }
+        });
         vm.isUpdating = false;
       });
     },
-    removeCart(id) {
+/* eslint-disable */
+    removeCart(productId) {
       const vm = this;
-      const api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_CUSTOM}/cart/${id}`;
+      const index = vm.orderIdList.findIndex((item) => item[0] === productId);
+      const orderIdData = vm.orderIdList[index];
 
-      vm.$http.delete(api).then(() => {
-        vm.getCarts();
-      });
+      for (let i = 1; i < orderIdData.length; i += 1) {
+        const id = vm.orderIdList[index][i];
+        const api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_CUSTOM}/cart/${id}`;
+        vm.$http.delete(api).then(() => {
+          vm.getCarts();
+        });
+      }
+
     },
   },
   created() {
     this.getCarts();
-
     this.$bus.$on('reupdateCarts', () => {
       this.getCarts();
     });
