@@ -85,6 +85,13 @@
                     class="px-5 mt-3 d-flex justify-content-sm-center align-items-sm-center"
                   >
                     <router-link
+                      v-if="isEmpty"
+                      to="/products/all"
+                      tag="button"
+                      class="btn btn-sm btn-primary w-100"
+                    >前往購物頁面</router-link>
+                    <router-link
+                      v-else
                       to="/checkout"
                       tag="button"
                       class="btn btn-sm btn-primary w-100"
@@ -107,17 +114,21 @@ export default {
       carts: [],
       isUpdating: false,
       orderIdList: [],
+      isEmpty: true,
     };
   },
   methods: {
     getCarts() {
       const vm = this;
-      vm.isUpdating = true;
       const api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_CUSTOM}/cart`;
+
+      vm.isUpdating = true;
       vm.carts = [];
       vm.orderIdList = [];
+
       vm.$http.get(api).then((response) => {
         const fetched = response.data.data.carts;
+
         fetched.forEach((el) => {
           if (vm.carts.some((cart) => cart.product_id === el.product_id)) {
             const index = vm.carts.findIndex((item) => item.product_id === el.product_id);
@@ -131,6 +142,13 @@ export default {
             vm.orderIdList.push(orderAry);
           }
         });
+
+        if (vm.carts.length === 0) {
+          vm.isEmpty = true;
+        } else {
+          vm.isEmpty = false;
+        }
+
         vm.isUpdating = false;
       });
     },
