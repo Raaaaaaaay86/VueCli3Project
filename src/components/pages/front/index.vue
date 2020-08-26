@@ -9,8 +9,9 @@
       <div :class="{ 'sticky-top': isSticky }">
         <Navbar />
       </div>
-
-      <router-view></router-view>
+      <div class="view">
+        <router-view></router-view>
+      </div>
     </div>
     <!--FOOTER-->
     <Footer />
@@ -38,12 +39,8 @@ export default {
 };
 </script>
 
-<style lang="scss">
-.circleBtn {
-  border: 1px solid lightgrey;
-  transition: 0.3s;
-  &:hover {
-    box-shadow: 0px 0px 10px black;
-  }
+<style lang="scss" scoped>
+.view{
+  min-height: calc(100vh - 207px);
 }
 </style>

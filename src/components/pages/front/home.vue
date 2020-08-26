@@ -43,10 +43,10 @@
               style="top:20%;left:15%"
             >
               <p class="mb-0 h2 font-weight-bold">
-                <u>世界上</u> ,
+                世界上 ,
               </p>
               <p class="mb-3 h2 font-weight-bold">
-                <u>只有你最了解自己</u>
+                只有你最了解自己
               </p>
               <!--ROUTER LINK-->
               <router-link to="/products/all" class="btn btn-secondary">了解更多</router-link>
@@ -73,51 +73,33 @@
         </a>
       </div>
     </div>
-    <!--QUOTE-->
-    <div class="row my-5">
-      <div class="col text-center">
-        <p class="quote mb-0">
-          " 時尚易逝，風格永存。"
-          <br />
-          <span class="font-italic h4">- Gabrielle Bonheur Claire</span>
-        </p>
+    <div style="margin-top:60px;margin-bottom:60px;">
+      <!--QUOTE-->
+      <div class="row mb-5">
+        <div class="col text-center">
+          <p class="quote mb-0">
+            " 時尚易逝，風格永存。"
+            <br />
+            <span class="font-italic h4">- Gabrielle Bonheur Claire</span>
+          </p>
+        </div>
+      </div>
+      <!--SLICK CAROUSEL-->
+      <div class="slider">
+        <div class="item d-flex justify-content-center" v-for="product in products" :key="product.id">
+          <div class="d-flex flex-column align-items-center justify-content-center" style="width:270px;">
+            <div
+            class="bg-cover"
+            style="width:100%;height:270px"
+            :style="{ backgroundImage: 'url(' + product.imageUrl + ')' }"
+            >
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-    <!--SLICK CAROUSEL-->
-    <div class="slider">
-      <div class="item" v-for="product in products" :key="product.id">
-        <div
-          class="bg-cover"
-          style="width:270px;height:270px"
-          :style="{ backgroundImage: 'url(' + product.imageUrl + ')' }"
-        ></div>
-      </div>
-    </div>
-    <!--QUOTE-->
-    <div class="row my-3 d-flex justify-content-center">
-      <div class="col-12 text-center">
-        <p class="h3">選擇適合你的產品</p>
-      </div>
-      <div class="col-md-6 mt-3 d-flex justify-content-around">
-        <router-link
-          tag="button"
-          to="/products/lip"
-          class="btn btn-lg btn-secondary"
-        >唇彩</router-link>
-        <router-link
-          tag="button"
-          to="/products/blush"
-          class="btn btn-lg btn-secondary"
-        >腮紅</router-link>
-        <router-link
-          tag="button"
-          to="/products/nail"
-          class="btn btn-lg btn-secondary"
-        >指彩</router-link>
-      </div>
-    </div>
-    <!--CUBE-->
-    <div class="row mt-5 no-gutters">
+  <!--CUBE-->
+    <div class="row no-gutters">
       <div
         class="col-md-6 mb-3 mb-md-0 d-flex flex-column justify-content-center align-items-center"
       >
@@ -126,7 +108,7 @@
         <router-link
           to="/products/all"
           tag="button"
-          class="btn btn-sm btn-secondary"
+          class="btn btn-sm btn-outline-primary"
         >了解更多</router-link>
       </div>
       <div class="col-md-6 mb-3 mb-md-0">
@@ -139,13 +121,80 @@
       >
         <p class="h2">CLAIRE's 的精神宗旨</p>
         <p>追求美麗的權利 人人公平</p>
-        <button class="btn btn-sm btn-secondary">點我閱讀</button>
+        <button class="btn btn-sm btn-outline-primary">點我閱讀</button>
       </div>
       <div class="col-md-6">
         <div class="bg-cover head02" style="height:300px"></div>
       </div>
     </div>
-  </div>
+  <!--QUOTE-->
+    <div class="row d-flex justify-content-center" style="margin-top:60px;margin-bottom:60px">
+      <div class="col-12 text-center">
+        <p class="h3">為您量身打造的產品</p>
+      </div>
+    </div>
+  <!--Recommend-->
+    <div class="row no-gutters">
+      <div class="col-md-9">
+        <div
+        class="productIntro-img bg-cover"
+        :style="{ backgroundImage: 'url(' + require('@/assets/imgs/make01.jpg') + ')' }"
+        ></div>
+      </div>
+      <div class="col-md-3">
+        <div class="productIntro my-3">
+          <div class="productIntro-title  mb-1 d-flex flex-column">
+            <p>唇彩系列</p>
+          </div>
+          <div class="productIntro-content text-primary d-flex flex-column">
+            <p class="mb-0">質地滑順 接觸雙唇完美融合</p>
+            <p class="mb-0">讓人愛不釋手</p>
+          </div>
+          <button class="mt-3 btn  btn-outline-primary">發現更多</button>
+        </div>
+      </div>
+    </div>
+    <div class="row no-gutters d-flex flex-row-reverse mt-15 mt-md-100">
+      <div class="col-md-9">
+        <div
+        class="productIntroReverse-img bg-cover"
+        :style="{ backgroundImage: 'url(' + require('@/assets/imgs/make03.jpg') + ')' }"
+        ></div>
+      </div>
+      <div class="col-md-3">
+        <div class="productIntroReverse my-3">
+          <div class="productIntroReverse-title  mb-1 d-flex flex-column">
+            <p>腮紅系列</p>
+          </div>
+          <div class="productIntroReverse-content text-primary d-flex flex-column">
+            <p class="mb-0">一抹瑕疵秒神隱 遠觀近看都無懈可擊</p>
+            <p class="mb-0">重回自信光彩</p>
+          </div>
+          <button class="mt-3 btn  btn-outline-primary">發現更多</button>
+        </div>
+      </div>
+    </div>
+    <div class="row no-gutters mt-15 mt-md-100">
+      <div class="col-md-9">
+        <div
+        class="productIntro-img bg-cover"
+        :style="{ backgroundImage: 'url(' + require('@/assets/imgs/make02.jpg') + ')' }"
+        ></div>
+      </div>
+      <div class="col-md-3">
+        <div class="productIntro my-3">
+          <div class="productIntro-title fornail mb-1 d-flex flex-column">
+            <p>指彩系列</p>
+          </div>
+          <div class="productIntro-content text-primary d-flex flex-column">
+            <p class="mb-0">顏色繽紛飽滿 光亮持久</p>
+            <p class="mb-0">展現個人魅力</p>
+          </div>
+          <button class="mt-3 btn  btn-outline-primary">發現更多</button>
+        </div>
+      </div>
+    </div>
+ </div>
 </template>
 
 <script>
@@ -159,6 +208,7 @@ export default {
     return {
       data: [],
       products: [],
+      isLoaded: false,
     };
   },
   methods: {
@@ -212,15 +262,123 @@ export default {
         ],
       });
     });
+    this.isLoaded = true;
   },
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .quote {
   font-size: 32px;
   @media (max-width: 768px) {
     font-size: 29px;
+  }
+}
+
+.productIntro{
+  position: absolute;
+  top: 20%;
+  left: -15%;
+  @media(max-width: 768px){
+    display: flex;
+    margin-top:10px;
+    flex-direction: column;
+    position:relative;
+    top:0px;
+    left:0px;
+  }
+  &-img{
+    height: 400px;
+  }
+  &-title{
+    font-size: 2.5rem;
+    background-color: black;
+    color:white;
+    font-weight: 500;
+    line-height: 1.2;
+    width: 80%;
+    .p{
+    margin-bottom: 0.5rem;
+    }
+    @media(max-width: 995px){
+      font-size: 2rem;
+      font-weight: 500;
+      line-height: 1.2;
+      width:70%;
+      .p{
+      margin-bottom: 0.5rem;
+      }
+    }
+    @media(max-width: 768px){
+      background-color: transparent;
+      color:black;
+      margin-bottom: 0.25rem;
+      .p{
+      }
+    }
+  }
+  &-content{
+    font-size:18px;
+    @media(max-width: 995px){
+      font-size: 16px;
+    }
+  }
+}
+
+.productIntroReverse{
+  position: absolute;
+  top: 20%;
+  right: -35%;
+  @media(max-width: 768px){
+    display: flex;
+    margin-top:10px;
+    flex-direction: column;
+    position:relative;
+    top:0px;
+    left:0px;
+  }
+  &-img{
+    height: 400px;
+  }
+  &-title{
+    font-size: 2.5rem;
+    background-color: black;
+    color:white;
+    font-weight: 500;
+    line-height: 1.2;
+    width: 65%;
+    .p{
+    margin-bottom: 0.5rem;
+    }
+    @media(max-width: 995px){
+      font-size: 2rem;
+      font-weight: 500;
+      line-height: 1.2;
+      width:60%;
+      .p{
+      margin-bottom: 0.5rem;
+      }
+    }
+    @media(max-width: 768px){
+      background-color: transparent;
+      color:black;
+      margin-bottom: 0.25rem;
+      .p{
+      }
+    }
+  }
+  &-content{
+    font-size:18px;
+    @media(max-width: 995px){
+      font-size: 16px;
+    }
+  }
+}
+
+.fornail{
+  width: 100% !important;
+  @media(max-width: 995px){
+    width: 85% !important;
   }
 }
 
@@ -231,4 +389,13 @@ export default {
 .head02 {
   background-image: url(../../../assets/imgs/head02.jpg);
 }
+
+.circleBtn {
+  border: 1px solid lightgrey;
+  transition: 0.3s;
+  &:hover {
+    box-shadow: 0px 0px 10px black;
+  }
+}
+
 </style>

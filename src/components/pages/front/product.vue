@@ -15,16 +15,18 @@
       </div>
     </div>
 
-    <transition-group tag="div" name="list" class="row mt-3 no-gutters">
-      <div
-        class="col-6 col-md-4 mb-3 d-flex justify-content-center"
+    <transition-group tag="div" name="list" class="row mt-3 d-flex justify-content-center no-gutters">
+      <router-link
+        tag="a"
+        :to="{ name: 'detail', params: { id: product.id } }"
+        class="col-6 col-md-3 mb-3 d-flex justify-content-center"
         v-for="product in products"
         :key="product.id"
       >
-        <div class="card" style="width:100%">
+        <div class="card" style="width:75%">
           <div
             class="card-img-top bg-contain"
-            style="min-height:300px"
+            style="min-height:150px"
             :style="{ backgroundImage: `url(${product.imageUrl})` }"
           ></div>
           <div class="card-body">
@@ -40,7 +42,7 @@
               <p class="card-text mb-1">{{ product.description }}</p>
               <small class="mb-3">{{ product.price | currency }}</small>
               <!--<p class="card-text">{{product.content}}</p> -->
-              <small class="d-block">
+              <small class="d-block mt-1">
                 <router-link
                   :to="{ name: 'detail', params: { id: product.id } }"
                 >查看詳情</router-link>
@@ -54,7 +56,7 @@
             </div>
           </div>
         </div>
-      </div>
+      </router-link>
     </transition-group>
     <!--Pagination-->
     <Pagination :pages="pagination" v-on:change-page="getProducts" />
@@ -112,7 +114,16 @@ export default {
 .product-header {
   background-image: url(../../../assets/imgs/productHeader.jpg);
 }
-.card-text {
-  font-size: 12px;
+
+.card{
+  transition: 0.1s;
+  &-text{
+    font-size: 12px;
+  }
+  &:hover{
+    transform: scale(1.02);
+    box-shadow: 0px 1px 6px rgba(0,0,0,0.5)
+  }
 }
+
 </style>

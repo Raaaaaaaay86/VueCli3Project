@@ -134,7 +134,6 @@ export default {
         vm.isUpdating = false;
       });
     },
-/* eslint-disable */
     removeCart(productId) {
       const vm = this;
       const index = vm.orderIdList.findIndex((item) => item[0] === productId);
@@ -147,7 +146,6 @@ export default {
           vm.getCarts();
         });
       }
-
     },
   },
   created() {
