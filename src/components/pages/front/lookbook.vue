@@ -135,6 +135,14 @@
   </div>
 </template>
 
+<script>
+export default {
+  created() {
+    window.scrollTo(0, 0);
+  },
+};
+</script>
+
 <style lang="scss" scoped>
 .test {
   background-image: url(../../../../static/profile02.jpg);

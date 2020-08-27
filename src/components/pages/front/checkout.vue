@@ -33,20 +33,24 @@
             </tr>
           </tbody>
         </table>
-        <div class="input-group input-group-sm mb-3">
-          <input
-            v-model="couponCode"
-            id="couponCode"
-            type="text"
-            class="form-control"
-            placeholder="請輸入優惠碼"
-          />
-          <div class="input-group-append  ">
-            <button class="input-group-text coupon-btn" @click.prevent="useCoupon()">
-              套用優惠碼
-            </button>
+        <div>
+          <div class="input-group input-group-sm mb-0">
+            <input
+              v-model="couponCode"
+              id="couponCode"
+              type="text"
+              class="form-control"
+              placeholder="請輸入優惠碼"
+            />
+            <div class="input-group-append  ">
+              <button class="input-group-text coupon-btn" @click.prevent="useCoupon()">
+                套用優惠碼
+              </button>
+            </div>
           </div>
+          <small v-if="!couponValid" class="text-danger">優惠券代碼錯誤</small>
         </div>
+
       </div>
 
       <div class="col-md-6 py-5 ">
@@ -57,7 +61,7 @@
           <validation-observer v-slot="{ handleSubmit }">
             <form @submit.prevent="handleSubmit(submitOrder)">
               <div class="form-group">
-                <label for="email">電子信箱</label>
+                <label for="email">電子信箱 (必填)</label>
                 <validation-provider
                   name="電子信箱"
                   :rules="{ required: true, email: true }"
@@ -77,7 +81,7 @@
               <div class="form-row">
                 <div class="col">
                   <div class="form-group">
-                    <label for="name">收件人姓名</label>
+                    <label for="name">收件人姓名 (必填)</label>
                     <validation-provider name="姓名" rules="required" v-slot="{ errors }">
                       <input
                         v-model="form.user.name"
@@ -93,7 +97,7 @@
                 </div>
                 <div class="col">
                   <div class="form-group">
-                    <label for="tel">收件人電話</label>
+                    <label for="tel">收件人電話 (必填)</label>
                     <validation-provider name="電話" rules="required" v-slot="{ errors }">
                       <input
                         v-model="form.user.tel"
@@ -109,7 +113,7 @@
                 </div>
               </div>
               <div class="form-group">
-                <label for="address">收件地址</label>
+                <label for="address">收件地址 (必填)</label>
                 <validation-provider name="地址" rules="required" v-slot="{ errors }">
                   <input
                     v-model="form.user.address"
@@ -123,7 +127,7 @@
                 </validation-provider>
               </div>
               <div class="form-group ">
-                <label for="msg">備註</label>
+                <label for="msg">備註 (選填)</label>
                 <textarea v-model="form.message" class="form-control" id="msg" rows="4"></textarea>
               </div>
               <button class="w-100 btn btn-primary">送出訂單</button>
@@ -142,6 +146,7 @@ export default {
       carts: [],
       isUpdating: false,
       couponCode: '',
+      couponValid: true,
       form: {
         user: {
           name: '',
@@ -180,7 +185,12 @@ export default {
       const vm = this;
       const api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_CUSTOM}/coupon`;
 
-      vm.$http.post(api, { data: { code: vm.couponCode } }).then(() => {
+      vm.$http.post(api, { data: { code: vm.couponCode } }).then((response) => {
+        if (!response.data.success) {
+          vm.couponValid = false;
+        } else {
+          vm.couponValid = true;
+        }
         vm.getCarts();
       });
     },

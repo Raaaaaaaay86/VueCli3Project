@@ -3,7 +3,7 @@ import { required, email } from 'vee-validate/dist/rules';
 
 extend('required', {
   ...required,
-  message: '{_field_}為必填項目',
+  message: '請填寫{_field_}',
 });
 
 extend('email', {

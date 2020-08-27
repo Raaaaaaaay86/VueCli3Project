@@ -172,5 +172,12 @@ export default {
       this.getCarts();
     });
   },
+  watch: {
+    $route(to) {
+      if (to.fullPath === '/checkout' && this.carts.length === 0) {
+        this.$router.push('/products/all');
+      }
+    },
+  },
 };
 </script>

@@ -49,7 +49,7 @@
                 只有你最了解自己
               </p>
               <!--ROUTER LINK-->
-              <router-link to="/products/all" class="btn btn-secondary">了解更多</router-link>
+              <router-link to="/products/all" class="btn btn-outline-primary">了解更多</router-link>
             </div>
           </div>
         </div>
@@ -121,7 +121,7 @@
       >
         <p class="h2">CLAIRE's 的精神宗旨</p>
         <p>追求美麗的權利 人人公平</p>
-        <button class="btn btn-sm btn-outline-primary">點我閱讀</button>
+        <router-link to="/about-claires" tag="button" class="btn btn-sm btn-outline-primary">點我閱讀</router-link>
       </div>
       <div class="col-md-6">
         <div class="bg-cover head02" style="height:300px"></div>
@@ -150,7 +150,7 @@
             <p class="mb-0">質地滑順 接觸雙唇完美融合</p>
             <p class="mb-0">讓人愛不釋手</p>
           </div>
-          <button class="mt-3 btn  btn-outline-primary">發現更多</button>
+          <router-link to="/products/lip" tag="button" class="mt-3 btn  btn-outline-primary">發現更多</router-link>
         </div>
       </div>
     </div>
@@ -170,7 +170,7 @@
             <p class="mb-0">一抹瑕疵秒神隱 遠觀近看都無懈可擊</p>
             <p class="mb-0">重回自信光彩</p>
           </div>
-          <button class="mt-3 btn  btn-outline-primary">發現更多</button>
+          <router-link to="/products/blush" tag="button" class="mt-3 btn  btn-outline-primary">發現更多</router-link>
         </div>
       </div>
     </div>
@@ -190,7 +190,7 @@
             <p class="mb-0">顏色繽紛飽滿 光亮持久</p>
             <p class="mb-0">展現個人魅力</p>
           </div>
-          <button class="mt-3 btn  btn-outline-primary">發現更多</button>
+          <router-link to="/products/nail" tag="button" class="mt-3 btn  btn-outline-primary">發現更多</router-link>
         </div>
       </div>
     </div>
@@ -224,6 +224,7 @@ export default {
   },
   created() {
     this.getProducts();
+    window.scrollTo(0, 0);
   },
   updated() {
     $(document).ready(() => {
