@@ -160,10 +160,10 @@ export default {
       for (let i = 1; i < orderIdData.length; i += 1) {
         const id = vm.orderIdList[index][i];
         const api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_CUSTOM}/cart/${id}`;
-        vm.$http.delete(api).then(() => {
-          vm.getCarts();
-        });
+        vm.$http.delete(api);
       }
+
+      setTimeout(() => vm.getCarts(), 1000);
     },
   },
   created() {

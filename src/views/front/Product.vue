@@ -64,7 +64,7 @@
 </template>
 
 <script>
-import Pagination from '../../pagination.vue';
+import Pagination from '@/components/pagination.vue';
 
 export default {
   data() {
@@ -112,7 +112,7 @@ export default {
 
 <style lang="scss">
 .product-header {
-  background-image: url(../../../assets/imgs/productHeader.jpg);
+  background-image: url(../../assets/imgs/productHeader.jpg);
 }
 
 .card{

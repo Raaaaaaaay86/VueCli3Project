@@ -1,14 +1,16 @@
+/* eslint-disable*/
+
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import axios from 'axios';
 import Vueaxios from 'vue-axios';
-import Index from '@/components/pages/front/index.vue';
-import Home from '@/components/pages/front/home.vue';
-import Products from '@/components/pages/front/product.vue';
-import Detail from '@/components/pages/front/detail.vue';
-import Checkout from '@/components/pages/front/checkout.vue';
-import OrderConfrim from '@/components/pages/front/orderConfirm.vue';
-import LookBook from '@/components/pages/front/lookbook.vue';
+import Index from '@/views/front/Index.vue';
+import Home from '@/views/front/Home.vue';
+import Products from '@/views/front/Product.vue';
+import Detail from '@/views/front/Detail.vue';
+import Checkout from '@/views/front/Checkout.vue';
+import OrderConfrim from '@/views/front/OrderConfirm.vue';
+import LookBook from '@/views/front/Lookbook.vue';
 import Dashboard from '@/components/pages/dashboard/dashboard.vue';
 import Login from '@/components/pages/dashboard/login.vue';
 import ProductList from '@/components/pages/dashboard/productList.vue';
@@ -32,17 +34,6 @@ const routes = [
         path: '/',
         name: 'home',
         component: Home,
-        beforeEnter: (to, from, next) => {
-          // test
-          // if(from.name === null){
-          //   next()
-          // }else if(from.matched[0].path === '/admin'){
-          //     next(`/admin/virtual${to.fullPath}`)
-          // }else{
-          //   next()
-          // }
-          next();
-        },
       },
       {
         path: '/products/:cat',

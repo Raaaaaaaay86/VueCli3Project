@@ -3,7 +3,7 @@
     <div class="container">
       <!--LOGO-->
       <router-link to="/" class="row mt-3 d-none d-md-flex justify-content-center">
-        <img height="39" class="text-dark" src="../../../assets/imgs/cocologo.svg" alt="" />
+        <img height="39" class="text-dark" src="@/assets/imgs/cocologo.svg" alt="" />
       </router-link>
       <!--NavBar-->
       <div :class="{ 'sticky-top': isSticky }">
@@ -19,8 +19,8 @@
 </template>
 
 <script>
-import Navbar from './components/Navbar.vue';
-import Footer from './components/Footer.vue';
+import Navbar from '@/components/pages/front/components/Navbar.vue';
+import Footer from '@/components/pages/front/components/Footer.vue';
 
 export default {
   data() {

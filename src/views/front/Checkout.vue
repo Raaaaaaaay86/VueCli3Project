@@ -40,7 +40,7 @@
               id="couponCode"
               type="text"
               class="form-control"
-              placeholder="請輸入優惠碼"
+              placeholder="慶開幕！輸入 CLAIRE 即可享九折優惠！"
             />
             <div class="input-group-append  ">
               <button class="input-group-text coupon-btn" @click.prevent="useCoupon()">

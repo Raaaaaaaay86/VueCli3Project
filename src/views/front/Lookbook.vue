@@ -144,9 +144,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.test {
-  background-image: url(../../../../static/profile02.jpg);
-}
 
 .bg-nocover {
   background-position: center;

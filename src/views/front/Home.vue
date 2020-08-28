@@ -12,7 +12,7 @@
           <div class="carousel-item active" style="max-height:500px">
             <img
               style
-              src="../../../assets/imgs/carousel0102.jpg"
+              src="@/assets/imgs/carousel0102.jpg"
               class="d-block w-100 position-relative"
             />
             <!--ROUTER LINK-->
@@ -35,7 +35,7 @@
           <div class="carousel-item" style="max-height:500px">
             <img
               style
-              src="../../../assets/imgs/carousel0202.jpg"
+              src="@/assets/imgs/carousel0202.jpg"
               class="d-block w-100 position-relative"
             />
             <div
@@ -314,8 +314,6 @@ export default {
       background-color: transparent;
       color:black;
       margin-bottom: 0.25rem;
-      .p{
-      }
     }
   }
   &-content{
@@ -364,8 +362,6 @@ export default {
       background-color: transparent;
       color:black;
       margin-bottom: 0.25rem;
-      .p{
-      }
     }
   }
   &-content{
@@ -384,11 +380,11 @@ export default {
 }
 
 .head01 {
-  background-image: url(../../../assets/imgs/head01.jpg);
+  background-image: url(../../assets/imgs/head01.jpg);
 }
 
 .head02 {
-  background-image: url(../../../assets/imgs/head02.jpg);
+  background-image: url(../../assets/imgs/head02.jpg);
 }
 
 .circleBtn {
