@@ -1,8 +1,6 @@
 <template>
   <div>
     <div class="row my-5">
-      <loading :active.sync="isLoading"></loading>
-
       <transition name="fade">
         <div
           class="col-md-6 d-flex justify-content-center"
@@ -52,7 +50,7 @@
               class="col-md-3 mt-3 mt-md-0 d-flex align-items-end justify-content-sm-start justify-content-md-end"
             >
               <button
-                v-if="!clicked"
+                v-if="!isClicked"
                 class="btn btn-primary"
                 @click.prevent="addToCart(product.id, qty)"
               >加入購物車</button>
@@ -177,7 +175,7 @@
         tag="a"
         :to="{ name: 'detail', params: { id: product.id } }"
         class="col-6 col-md-3 mb-3 d-flex justify-content-center"
-        v-for="product in products"
+        v-for="product in randomProducts"
         :key="product.id"
       >
         <div class="card" style="width:75%">
@@ -221,47 +219,29 @@
 export default {
   data() {
     return {
-      product: {},
-      clicked: false,
-      isUpdating: false,
       qty: 1,
-      products: [],
     };
   },
   methods: {
     getSingle() {
-      const vm = this;
-      const api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_CUSTOM}/product/${vm.$route.params.id}`;
-      vm.isLoading = true;
-
-      vm.$http.get(api).then((response) => {
-        vm.product = response.data.product;
-        vm.isLoading = false;
-      });
+      this.$store.dispatch('getSingle', this.$route.params.id);
     },
     addToCart(id, qty = 1) {
-      const vm = this;
-      const api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_CUSTOM}/cart`;
-      const data = { product_id: id, qty };
-      vm.clicked = true;
-
-      vm.$http.post(api, { data }).then(() => {
-        this.$bus.$emit('reupdateCarts');
-        setTimeout(() => {
-          vm.clicked = false;
-        }, 500);
-      });
+      this.$store.dispatch('addToCart', { id, qty });
     },
     getProducts(page = 1) {
-      const vm = this;
-      const api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_CUSTOM}/products?page=${page}`;
-
-      vm.$http.get(api).then((response) => {
-        const fetched = response.data.products;
-        fetched.sort(() => Math.random() - 0.5);
-        const sliced = fetched.slice(0, 4);
-        vm.products = sliced;
-      });
+      this.$store.dispatch('getProducts', { page, cat: 'all', for: 'similar' });
+    },
+  },
+  computed: {
+    product() {
+      return this.$store.state.product;
+    },
+    isClicked() {
+      return this.$store.state.isClicked;
+    },
+    randomProducts() {
+      return this.$store.state.randomProducts;
     },
   },
   created() {

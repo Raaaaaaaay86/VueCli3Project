@@ -13,7 +13,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr v-for="cart in carts.carts" :key="cart.id">
+            <tr v-for="cart in carts" :key="cart.id">
               <td>
                 <button class="btn btn-outline-primary" @click.prevent="removeCart(cart.id)">
                   <i class="fas fa-trash-alt"></i>
@@ -143,7 +143,7 @@
 export default {
   data() {
     return {
-      carts: [],
+      // carts: [],
       isUpdating: false,
       couponCode: '',
       couponValid: true,
@@ -161,25 +161,10 @@ export default {
   },
   methods: {
     getCarts() {
-      const vm = this;
-      vm.isUpdating = true;
-      vm.isLoading = true;
-      const api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_CUSTOM}/cart`;
-
-      vm.$http.get(api).then((response) => {
-        vm.carts = response.data.data;
-        vm.isUpdating = false;
-        vm.isLoading = false;
-      });
+      this.$store.dispatch('getCarts');
     },
-    removeCart(id) {
-      const vm = this;
-      const api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_CUSTOM}/cart/${id}`;
-
-      vm.$http.delete(api).then(() => {
-        this.$bus.$emit('reupdateCarts');
-        vm.getCarts();
-      });
+    removeCart(OrderId) {
+      this.$store.dispatch('removeCart', OrderId);
     },
     useCoupon() {
       const vm = this;
@@ -203,6 +188,11 @@ export default {
           vm.$router.push(`/order-confirm/${response.data.orderId}`);
         }
       });
+    },
+  },
+  computed: {
+    carts() {
+      return this.$store.state.carts;
     },
   },
   created() {

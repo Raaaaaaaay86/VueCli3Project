@@ -86,7 +86,7 @@
       </div>
       <!--SLICK CAROUSEL-->
       <div class="slider">
-        <div class="item d-flex justify-content-center" v-for="product in products" :key="product.id">
+        <div class="item d-flex justify-content-center" v-for="product in randomProducts" :key="product.id">
           <div class="d-flex flex-column align-items-center justify-content-center" style="width:270px;">
             <div
             class="bg-cover"
@@ -206,20 +206,17 @@ import 'slick-carousel/slick/slick-theme.css';
 export default {
   data() {
     return {
-      data: [],
-      products: [],
       isLoaded: false,
     };
   },
   methods: {
     getProducts(page = 1) {
-      const vm = this;
-      const api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_CUSTOM}/products?page=${page}`;
-
-      vm.$http.get(api).then((response) => {
-        vm.products = response.data.products;
-        vm.products.sort(() => Math.random() - 0.5);
-      });
+      this.$store.dispatch('getProducts', { page, cat: 'all', for: 'carousel' });
+    },
+  },
+  computed: {
+    randomProducts() {
+      return this.$store.state.randomCarousel;
     },
   },
   created() {
@@ -263,6 +260,7 @@ export default {
         ],
       });
     });
+
     this.isLoaded = true;
   },
 };

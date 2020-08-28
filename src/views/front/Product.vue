@@ -67,36 +67,21 @@
 import Pagination from '@/components/pagination.vue';
 
 export default {
-  data() {
-    return {
-      products: [],
-      pagination: {},
-    };
-  },
   components: { Pagination },
   methods: {
     getProducts(page = 1) {
-      const vm = this;
-      const api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_CUSTOM}/products?page=${page}`;
-      vm.$http.get(api).then((response) => {
-        if (vm.$route.params.cat === 'all') {
-          vm.products = response.data.products;
-          vm.pagination = response.data.pagination;
-        } else {
-          vm.products = response.data.products.filter((el) => el.category === vm.$route.params.cat);
-          vm.pagination = response.data.pagination;
-        }
-      });
+      this.$store.dispatch('getProducts', { page, cat: this.$route.params.cat });
     },
     addToCart(id, qty = 1) {
-      const vm = this;
-      const api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_CUSTOM}/cart`;
-
-      const data = { product_id: id, qty };
-
-      vm.$http.post(api, { data }).then(() => {
-        this.$bus.$emit('reupdateCarts');
-      });
+      this.$store.dispatch('addToCart', { id, qty });
+    },
+  },
+  computed: {
+    products() {
+      return this.$store.state.products;
+    },
+    pagination() {
+      return this.$store.state.pagination;
     },
   },
   created() {

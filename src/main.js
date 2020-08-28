@@ -1,4 +1,5 @@
 import Vue from 'vue';
+import Vuex from 'vuex';
 import 'jquery';
 import axios from 'axios';
 import Vueaxios from 'vue-axios';
@@ -16,6 +17,7 @@ import App from './App.vue';
 import CurrencyFilter from './filters/currency';
 import TimeStampFilter from './filters/timeStamp';
 import CatTranslateFilter from './filters/catTranslate';
+import store from './store';
 
 axios.defaults.withCredentials = true;
 Vue.config.productionTip = false;
@@ -27,10 +29,13 @@ Vue.filter('currency', CurrencyFilter);
 Vue.filter('timeStamp', TimeStampFilter);
 Vue.filter('cat', CatTranslateFilter);
 Vue.use(Vueaxios, axios);
+Vue.use(Vuex);
 
 new Vue({
   router,
   render: (h) => h(App),
+  store,
+
   created() {
     AOS.init();
   },

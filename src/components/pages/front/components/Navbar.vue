@@ -68,7 +68,7 @@
                         <td>
                           <button
                             class="btn btn-outline-primary"
-                            @click.prevent="removeCart(cart.product_id)"
+                            @click.prevent="removeCart(cart.id)"
                           >
                             <i class="fas fa-trash-alt"></i>
                           </button>
@@ -108,62 +108,25 @@
 </template>
 
 <script>
+
 export default {
-  data() {
-    return {
-      carts: [],
-      isUpdating: false,
-      orderIdList: [],
-      isEmpty: true,
-    };
-  },
   methods: {
     getCarts() {
-      const vm = this;
-      const api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_CUSTOM}/cart`;
-
-      vm.isUpdating = true;
-      vm.carts = [];
-      vm.orderIdList = [];
-
-      vm.$http.get(api).then((response) => {
-        const fetched = response.data.data.carts;
-
-        fetched.forEach((el) => {
-          if (vm.carts.some((cart) => cart.product_id === el.product_id)) {
-            const index = vm.carts.findIndex((item) => item.product_id === el.product_id);
-            const idIndex = vm.orderIdList.findIndex((item) => item[0] === el.product_id);
-            vm.carts[index].qty += el.qty;
-            vm.orderIdList[idIndex].push(el.id);
-          } else {
-            const orderAry = [];
-            vm.carts.push(el);
-            orderAry.push(el.product_id, el.id);
-            vm.orderIdList.push(orderAry);
-          }
-        });
-
-        if (vm.carts.length === 0) {
-          vm.isEmpty = true;
-        } else {
-          vm.isEmpty = false;
-        }
-
-        vm.isUpdating = false;
-      });
+      this.$store.dispatch('getCarts');
     },
-    removeCart(productId) {
-      const vm = this;
-      const index = vm.orderIdList.findIndex((item) => item[0] === productId);
-      const orderIdData = vm.orderIdList[index];
-
-      for (let i = 1; i < orderIdData.length; i += 1) {
-        const id = vm.orderIdList[index][i];
-        const api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_CUSTOM}/cart/${id}`;
-        vm.$http.delete(api);
-      }
-
-      setTimeout(() => vm.getCarts(), 1000);
+    removeCart(OrderId) {
+      this.$store.dispatch('removeCart', OrderId);
+    },
+  },
+  computed: {
+    carts() {
+      return this.$store.state.carts;
+    },
+    isEmpty() {
+      return this.$store.state.isEmpty;
+    },
+    isUpdating() {
+      return this.$store.state.isUpdating;
     },
   },
   created() {
