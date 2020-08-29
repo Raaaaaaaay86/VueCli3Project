@@ -64,7 +64,7 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr v-for="cart in carts" :key="cart.id">
+                      <tr v-for="cart in carts.carts" :key="cart.id">
                         <td>
                           <button
                             class="btn btn-outline-primary"

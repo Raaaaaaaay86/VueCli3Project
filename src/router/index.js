@@ -16,7 +16,7 @@ import Login from '@/components/pages/dashboard/login.vue';
 import ProductList from '@/components/pages/dashboard/productList.vue';
 import CouponList from '@/components/pages/dashboard/couponList.vue';
 import OrderList from '@/components/pages/dashboard/orderList.vue';
-
+import CheckoutSuccess from '@/views/front/Checkout-success.vue';
 Vue.use(VueRouter);
 Vue.use(Vueaxios, axios);
 
@@ -90,6 +90,11 @@ const routes = [
             next();
           }
         },
+      },
+      {
+        path:'/checkout-success/:orderId',
+        name:'checkout-success',
+        component: CheckoutSuccess,
       },
       {
         path: 'about-claires',

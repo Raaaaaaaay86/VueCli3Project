@@ -1,9 +1,10 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import axios from 'axios';
+import router from '../router';
 
 Vue.use(Vuex);
-/* eslint-disable */
+
 export default new Vuex.Store({
   strict: true,
   state: {
@@ -13,10 +14,19 @@ export default new Vuex.Store({
     products: [],
     randomProducts: [],
     randomCarousel: [],
-    carts: [],
+    carts: { carts: [] },
     pagination: {},
     isEmpty: true,
     isClicked: false,
+    couponValid: '',
+    order: {
+      user: {
+        email: '',
+        name: '',
+        tel: '',
+        address: '',
+      },
+    },
   },
   actions: {
     updateLoading(context, payload) {
@@ -36,7 +46,7 @@ export default new Vuex.Store({
       context.commit('UPDATING', true);
 
       axios.get(api).then((response) => {
-        context.commit('GET_CARTS', response.data.data.carts);
+        context.commit('GET_CARTS', response.data.data);
         context.commit('UPDATING', false);
       });
     },
@@ -52,23 +62,21 @@ export default new Vuex.Store({
       const data = { product_id: payload.id, qty: payload.qty };
       context.commit('CLICKED', true);
 
-      if ( this.state.carts.some((el) => el.product_id === payload.id )){
-        const index = this.state.carts.findIndex((el) => el.product_id === payload.id);
-        const orderId = this.state.carts[index].id;
-        const originalQty = this.state.carts[index].qty;
-        const data = { product_id: payload.id, qty: payload.qty + originalQty };
+      if (this.state.carts.carts.some((el) => el.product_id === payload.id)) {
+        const index = this.state.carts.carts.findIndex((el) => el.product_id === payload.id);
+        const orderId = this.state.carts.carts[index].id;
+        const originalQty = this.state.carts.carts[index].qty;
+        const addData = { product_id: payload.id, qty: payload.qty + originalQty };
         const removeApi = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_CUSTOM}/cart/${orderId}`;
-        const addApi = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_CUSTOM}/cart`;
 
         axios.delete(removeApi);
-        axios.post(addApi, { data }).then((response) => {
+        axios.post(api, { data: addData }).then(() => {
           context.dispatch('getCarts');
           setTimeout(() => {
             context.commit('CLICKED', false);
           }, 500);
         });
       } else {
-
         axios.post(api, { data }).then(() => {
           context.dispatch('getCarts');
           setTimeout(() => {
@@ -76,7 +84,6 @@ export default new Vuex.Store({
           }, 500);
         });
       }
-
     },
     getProducts(context, payload) {
       const api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_CUSTOM}/products?page=${payload.page}`;
@@ -104,6 +111,38 @@ export default new Vuex.Store({
         }
       });
     },
+    useCoupon(context, payload) {
+      const api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_CUSTOM}/coupon`;
+      axios.post(api, { data: { code: payload.couponCode } }).then((response) => {
+        context.dispatch('getCarts');
+        context.commit('COUPON_VALID', response.data.success);
+      });
+    },
+    submitOrder(context, payload) {
+      const api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_CUSTOM}/order`;
+
+      axios.post(api, { data: payload.form }).then((response) => {
+        if (response.data.success) {
+          router.push(`/order-confirm/${response.data.orderId}`);
+        }
+      });
+    },
+    getOrder(context, payload) {
+      const api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_CUSTOM}/order/${payload.routeParam}`;
+      context.commit('LOADING', true);
+
+      axios.get(api).then((response) => {
+        context.commit('GET_ORDERINFO', response.data.order);
+        context.commit('LOADING', false);
+      });
+    },
+    pay(context, payload) {
+      const api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_CUSTOM}/pay/${payload.routeParam}`;
+
+      axios.post(api).then(() => {
+        router.push(`/checkout-success/${payload.routeParam}`);
+      });
+    },
   },
   mutations: {
     LOADING(state, payload) {
@@ -121,7 +160,7 @@ export default new Vuex.Store({
     GET_CARTS(state, payload) {
       state.carts = payload;
 
-      if (state.carts.length === 0) {
+      if (state.carts.carts.length === 0) {
         state.isEmpty = true;
       } else {
         state.isEmpty = false;
@@ -144,9 +183,16 @@ export default new Vuex.Store({
 
       state.randomCarousel = fetched;
     },
-  },
-  getters: {
-
+    COUPON_VALID(state, payload) {
+      if (!payload) {
+        state.couponValid = false;
+      } else {
+        state.couponValid = true;
+      }
+    },
+    GET_ORDERINFO(state, payload) {
+      state.order = payload;
+    },
   },
   modules: {
   },

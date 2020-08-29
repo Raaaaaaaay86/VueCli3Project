@@ -1,6 +1,5 @@
 <template>
   <div class="row py-5 d-flex justify-content-sm-center">
-    <loading :active.sync="isLoading"></loading>
     <div class="col-md-8">
       <table class="table table-hover">
         <thead>
@@ -54,38 +53,19 @@
 
 <script>
 export default {
-  data() {
-    return {
-      order: {
-        user: {
-          email: '',
-          name: '',
-          tel: '',
-          address: '',
-        },
-      },
-      isLoading: false,
-    };
-  },
   methods: {
     getOrder() {
-      const vm = this;
       const id = this.$route.params.orderId;
-      const api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_CUSTOM}/order/${id}`;
-      vm.isLoading = true;
-      vm.$http.get(api).then((response) => {
-        vm.order = response.data.order;
-        vm.isLoading = false;
-      });
+      this.$store.dispatch('getOrder', { routeParam: id });
     },
     pay() {
-      const vm = this;
       const id = this.$route.params.orderId;
-      const api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_CUSTOM}/pay/${id}`;
-
-      vm.$http.post(api).then(() => {
-        vm.getOrder();
-      });
+      this.$store.dispatch('pay', { routeParam: id });
+    },
+  },
+  computed: {
+    order() {
+      return this.$store.state.order;
     },
   },
   created() {

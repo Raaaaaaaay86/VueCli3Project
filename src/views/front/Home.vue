@@ -49,7 +49,7 @@
                 只有你最了解自己
               </p>
               <!--ROUTER LINK-->
-              <router-link to="/products/all" class="btn btn-outline-primary">了解更多</router-link>
+              <router-link to="/products/all" class="btn btn-primary">了解更多</router-link>
             </div>
           </div>
         </div>

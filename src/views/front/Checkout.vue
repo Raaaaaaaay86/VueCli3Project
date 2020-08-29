@@ -1,6 +1,5 @@
 <template>
   <div>
-    <loading :active.sync="isLoading"></loading>
     <div class="row d-flex justify-content-sm-center">
       <div class="col-md-6 py-5">
         <table class="table table-borderless border border-primary">
@@ -13,22 +12,36 @@
             </tr>
           </thead>
           <tbody>
-            <tr v-for="cart in carts" :key="cart.id">
+            <tr v-for="cart in carts.carts" :key="cart.id">
               <td>
                 <button class="btn btn-outline-primary" @click.prevent="removeCart(cart.id)">
                   <i class="fas fa-trash-alt"></i>
                 </button>
               </td>
               <td>{{ cart.product.title }}</td>
-              <td>{{ cart.qty }}{{ cart.product.unit }}</td>
+              <td class="qty d-flex align-items-center">
+              <div class="qty-minus" @click.prevent="changeQty(cart.product_id,-1)">-</div>
+              {{ cart.qty }} {{ cart.product.unit }}
+              <div class="qty-plus" @click.prevent="changeQty(cart.product_id)">+</div>
+              </td>
               <td class="text-right">{{ (cart.product.price * cart.qty) | currency }}</td>
             </tr>
-            <tr>
-              <td colspan="4" class="text-right">原價: {{ carts.total | currency }}</td>
+            <tr v-if="carts.carts.length !== 0">
+              <td  colspan="4" class="text-right">原價: {{ carts.total | currency }}</td>
             </tr>
             <tr v-if="carts.final_total !== carts.total">
               <td colspan="4" class="text-right text-success font-weight-bolder">
                 折扣價: {{ carts.final_total | currency }}
+              </td>
+            </tr>
+            <tr v-if="carts.carts.length === 0">
+              <td colspan="4" class="text-center pb-0">
+                <p class="mb-0">購物車是空的!</p>
+              </td>
+            </tr>
+            <tr v-if="carts.carts.length === 0">
+              <td colspan="4" class="text-center">
+                <router-link to="/products/all" tag="button" class="btn btn-primary">回購物頁面</router-link>
               </td>
             </tr>
           </tbody>
@@ -48,7 +61,8 @@
               </button>
             </div>
           </div>
-          <small v-if="!couponValid" class="text-danger">優惠券代碼錯誤</small>
+          <small v-if="couponValid === true" class="text-success">成功使用優惠券</small>
+          <small v-if="couponValid === false" class="text-danger">優惠券代碼錯誤</small>
         </div>
 
       </div>
@@ -143,10 +157,7 @@
 export default {
   data() {
     return {
-      // carts: [],
-      isUpdating: false,
       couponCode: '',
-      couponValid: true,
       form: {
         user: {
           name: '',
@@ -156,7 +167,6 @@ export default {
         },
         message: '',
       },
-      isLoading: false,
     };
   },
   methods: {
@@ -166,33 +176,24 @@ export default {
     removeCart(OrderId) {
       this.$store.dispatch('removeCart', OrderId);
     },
+    changeQty(id, qty = 1) {
+      this.$store.dispatch('addToCart', { id, qty });
+    },
     useCoupon() {
       const vm = this;
-      const api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_CUSTOM}/coupon`;
-
-      vm.$http.post(api, { data: { code: vm.couponCode } }).then((response) => {
-        if (!response.data.success) {
-          vm.couponValid = false;
-        } else {
-          vm.couponValid = true;
-        }
-        vm.getCarts();
-      });
+      this.$store.dispatch('useCoupon', { couponCode: vm.couponCode });
     },
     submitOrder() {
       const vm = this;
-      const api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_CUSTOM}/order`;
-
-      vm.$http.post(api, { data: vm.form }).then((response) => {
-        if (response.data.success) {
-          vm.$router.push(`/order-confirm/${response.data.orderId}`);
-        }
-      });
+      this.$store.dispatch('submitOrder', { form: vm.form });
     },
   },
   computed: {
     carts() {
       return this.$store.state.carts;
+    },
+    couponValid() {
+      return this.$store.state.couponValid;
     },
   },
   created() {
@@ -201,4 +202,41 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.qty{
+  &-minus{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 3px;
+    height: 16px;
+    width: 16px;
+    margin-right: 10px;
+    border: 1px solid black;
+    user-select: none;
+    &:hover{
+      transform: scale(1.15);
+    }
+    &:active{
+      transform: scale(1);
+    }
+  }
+  &-plus{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 3px;
+    height: 16px;
+    width: 16px;
+    margin-left: 10px;
+    border: 1px solid black;
+    user-select: none;
+    &:hover{
+      transform: scale(1.15);
+    }
+    &:active{
+      transform: scale(1);
+    }
+  }
+}
+</style>
