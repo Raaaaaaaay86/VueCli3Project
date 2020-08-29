@@ -44,10 +44,11 @@ export default new Vuex.Store({
     getCarts(context) {
       const api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_CUSTOM}/cart`;
       context.commit('UPDATING', true);
-
+      context.commit('LOADING', true);
       axios.get(api).then((response) => {
         context.commit('GET_CARTS', response.data.data);
         context.commit('UPDATING', false);
+        context.commit('LOADING', false);
       });
     },
     removeCart(context, payload) {
@@ -61,6 +62,7 @@ export default new Vuex.Store({
       const api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_CUSTOM}/cart`;
       const data = { product_id: payload.id, qty: payload.qty };
       context.commit('CLICKED', true);
+      context.commit('LOADING', true);
 
       if (this.state.carts.carts.some((el) => el.product_id === payload.id)) {
         const index = this.state.carts.carts.findIndex((el) => el.product_id === payload.id);
@@ -165,6 +167,9 @@ export default new Vuex.Store({
       } else {
         state.isEmpty = false;
       }
+    },
+    CLEAN_CART(state) {
+      state.carts = [];
     },
     GET_PRODUCTS(state, payload) {
       state.products = payload.products;

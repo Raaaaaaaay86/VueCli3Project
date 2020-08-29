@@ -42,10 +42,9 @@
 </template>
 
 <script>
-// 產品列表 訂單列表 優惠券
 import $ from 'jquery';
-import Navbar from './components/dashNavbar.vue';
-import SideMenu from './components/dashSideMenu.vue';
+import Navbar from '@/components/pages/dashboard/components/dashNavbar.vue';
+import SideMenu from '@/components/pages/dashboard/components/dashSideMenu.vue';
 
 export default {
   data() {
