@@ -71,12 +71,13 @@ export default new Vuex.Store({
         const addData = { product_id: payload.id, qty: payload.qty + originalQty };
         const removeApi = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_CUSTOM}/cart/${orderId}`;
 
-        axios.delete(removeApi);
-        axios.post(api, { data: addData }).then(() => {
-          context.dispatch('getCarts');
-          setTimeout(() => {
-            context.commit('CLICKED', false);
-          }, 500);
+        axios.delete(removeApi).then(() => {
+          axios.post(api, { data: addData }).then(() => {
+            context.dispatch('getCarts');
+            setTimeout(() => {
+              context.commit('CLICKED', false);
+            }, 500);
+          });
         });
       } else {
         axios.post(api, { data }).then(() => {
