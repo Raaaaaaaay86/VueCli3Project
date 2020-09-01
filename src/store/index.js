@@ -116,7 +116,6 @@ export default new Vuex.Store({
     getRandom(context) {
       const api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_CUSTOM}/products/all`;
       axios.get(api).then((response) => {
-        console.log(response);
         const fetched = response.data.products;
         context.commit('RANDOM_CAROUSEL', fetched);
         context.commit('RANDOM_PRODUCTS', fetched);
@@ -155,7 +154,6 @@ export default new Vuex.Store({
       });
     },
     showToast(context, payload) {
-      console.log(payload.isSuccess);
       context.commit('SHOW_TOAST', { isSuccess: payload.isSuccess, msg: payload.msg });
     },
   },

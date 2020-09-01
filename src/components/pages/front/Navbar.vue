@@ -10,9 +10,9 @@
                     <img height="30" class="text-dark d-block d-md-none" src="../../../assets/imgs/cocologo.svg" alt />
                 </router-link>
                 <div class="d-bolck d-md-none">
-                    <i v-if="isUpdating" class="fas fa-spinner fa-spin"></i>
+                    <i v-if="isUpdating" class="fas fa-spinner fa-1x fa-spin"></i>
                     <router-link to="/checkout">
-                        <i class="fas fa-shopping-cart mr-3"></i>
+                        <i class="fas fa-shopping-cart fa-2x mr-3"></i>
                     </router-link>
                 </div>
                 <div class="collapse navbar-collapse" id="navbarNav">

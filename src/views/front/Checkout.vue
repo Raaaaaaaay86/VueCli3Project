@@ -5,10 +5,10 @@
             <table class="table table-borderless border border-primary">
                 <thead>
                     <tr>
-                        <th width="20px"></th>
+                        <th class="trash"></th>
                         <th>品名</th>
-                        <th>數量</th>
-                        <th>小計</th>
+                        <th class="mount">數量</th>
+                        <th class="net">小計</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -18,16 +18,18 @@
                                 <i class="fas fa-trash-alt"></i>
                             </button>
                         </td>
-                        <td>{{ cart.product.title }}</td>
-                        <td class="qty d-flex align-items-center">
-                            <div class="qty-minus" @click.prevent="changeQty(cart.product_id,-1)">-</div>
-                            {{ cart.qty }} {{ cart.product.unit }}
-                            <div class="qty-plus" @click.prevent="changeQty(cart.product_id)">+</div>
+                        <td class="table-title">{{ cart.product.title }}</td>
+                        <td>
+                          <div class="qty">
+                              <div class="qty-minus" @click.prevent="changeQty(cart.product_id,-1)">-</div>
+                              {{ cart.qty }} {{ cart.product.unit }}
+                              <div class="qty-plus" @click.prevent="changeQty(cart.product_id)">+</div>
+                          </div>
                         </td>
                         <td class="text-right">{{ (cart.product.price * cart.qty) | currency }}</td>
                     </tr>
                     <tr v-if="carts.carts.length !== 0">
-                        <td colspan="4" class="text-right">原價: {{ carts.total | currency }}</td>
+                        <td colspan="4" class="text-right">總金額: {{ carts.total | currency }}</td>
                     </tr>
                     <tr v-if="carts.final_total !== carts.total">
                         <td colspan="4" class="text-right text-success font-weight-bolder">
@@ -48,7 +50,7 @@
             </table>
             <div>
                 <div class="input-group input-group-sm mb-0">
-                    <input v-model="couponCode" id="couponCode" type="text" class="form-control" placeholder="慶開幕！輸入 CLAIRE 即可享九折優惠！" />
+                    <input v-model="couponCode" id="couponCode" type="text" class="form-control" placeholder="慶開幕！輸入 CLAIRE 即享九折！" />
                     <div class="input-group-append  ">
                         <button class="input-group-text coupon-btn" @click.prevent="useCoupon()">
                             套用優惠碼
@@ -163,6 +165,8 @@ export default {
 
 <style lang="scss" scoped>
 .qty {
+  display: flex;
+  align-items: center;
   &-minus {
     display: flex;
     align-items: center;
@@ -170,7 +174,7 @@ export default {
     padding-bottom: 3px;
     height: 16px;
     width: 16px;
-    margin-right: 10px;
+    margin-right: 5px;
     border: 1px solid black;
     user-select: none;
 
@@ -190,7 +194,7 @@ export default {
     padding-bottom: 3px;
     height: 16px;
     width: 16px;
-    margin-left: 10px;
+    margin-left: 5px;
     border: 1px solid black;
     user-select: none;
 
@@ -201,6 +205,29 @@ export default {
     &:active {
       transform: scale(1);
     }
+  }
+}
+
+tbody tr td{
+  padding-right: 6px;
+  padding-left: 6px;
+}
+
+.trash {
+  @media(max-width: 576px) {
+    width: 10px;
+  }
+}
+
+.mount {
+  @media(max-width: 576px) {
+    width: 80px;
+  }
+}
+
+.net {
+  @media(max-width: 576px) {
+    width: 60px;
   }
 }
 </style>
