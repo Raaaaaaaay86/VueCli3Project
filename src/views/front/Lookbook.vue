@@ -136,9 +136,13 @@
 </template>
 
 <script>
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+
 export default {
   created() {
     window.scrollTo(0, 0);
+    AOS.init();
   },
 };
 </script>

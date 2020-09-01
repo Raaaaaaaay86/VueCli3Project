@@ -47,7 +47,7 @@ export default {
 }
 
 .list-enter,
-.list-leave-to{
+.list-leave-to {
   opacity: 0;
   transform: translateY(20px);
 }

@@ -9,9 +9,7 @@ import Loading from 'vue-loading-overlay';
 import 'vue-loading-overlay/dist/vue-loading.css';
 import { ValidationProvider, ValidationObserver } from 'vee-validate';
 import './validation';
-import AOS from 'aos';
 import router from './router';
-import 'aos/dist/aos.css';
 import App from './App.vue';
 
 import CurrencyFilter from './filters/currency';
@@ -35,9 +33,6 @@ new Vue({
   router,
   render: (h) => h(App),
   store,
-  created() {
-    AOS.init();
-  },
 }).$mount('#app');
 
 router.beforeEach((to, from, next) => {
