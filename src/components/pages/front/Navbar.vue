@@ -7,7 +7,7 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <router-link to="/">
-                    <img height="30" class="text-dark d-block d-md-none" src="../../../../assets/imgs/cocologo.svg" alt />
+                    <img height="30" class="text-dark d-block d-md-none" src="../../../assets/imgs/cocologo.svg" alt />
                 </router-link>
                 <div class="d-bolck d-md-none">
                     <i v-if="isUpdating" class="fas fa-spinner fa-spin"></i>

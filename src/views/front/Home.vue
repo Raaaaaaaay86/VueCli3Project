@@ -1,5 +1,5 @@
 <template>
-  <div>
+<div>
     <!--Carousel-->
     <div class="row mt-3">
       <div
@@ -194,7 +194,7 @@
         </div>
       </div>
     </div>
- </div>
+</div>
 </template>
 
 <script>

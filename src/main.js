@@ -35,8 +35,23 @@ new Vue({
   router,
   render: (h) => h(App),
   store,
-
   created() {
     AOS.init();
   },
 }).$mount('#app');
+
+router.beforeEach((to, from, next) => {
+  const api = `${process.env.VUE_APP_API}/api/user/check`;
+
+  if (to.meta.requireAuth) {
+    axios.post(api).then((response) => {
+      if (response.data.success) {
+        next();
+      } else {
+        next('/login');
+      }
+    });
+  } else {
+    next();
+  }
+});

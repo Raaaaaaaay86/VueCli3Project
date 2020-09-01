@@ -4,7 +4,7 @@
       <div class="row py-4">
         <div class="col-md-6 d-flex d-md-block justify-content-center">
           <div>
-            <img height="15" src="../../../../assets/imgs/cocologo.svg" alt="" />
+            <img height="15" src="../../../assets/imgs/cocologo.svg" alt="" />
             <div>
               <small class="d-block">聯絡地址:台北市信義區松仁路100號89樓</small>
               <small class="d-block">(此為練習作品，無商業行為)</small>

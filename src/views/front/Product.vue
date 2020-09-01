@@ -37,11 +37,9 @@
                 class="card-title mb-0 font-weight-bolder"
               >
                 {{ product.title }}
-                <!--    <span class="badge badge-danger">{{product.category}}</span> -->
               </router-link>
               <p class="card-text mb-1">{{ product.description }}</p>
               <small class="mb-3">{{ product.price | currency }}</small>
-              <!--<p class="card-text">{{product.content}}</p> -->
               <small class="d-block mt-1">
                 <router-link
                   :to="{ name: 'detail', params: { id: product.id } }"
@@ -64,7 +62,7 @@
 </template>
 
 <script>
-import Pagination from '@/components/pagination.vue';
+import Pagination from '@/components/Pagination.vue';
 
 export default {
   components: { Pagination },

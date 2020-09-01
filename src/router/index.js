@@ -1,22 +1,8 @@
-/* eslint-disable*/
-
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import axios from 'axios';
 import Vueaxios from 'vue-axios';
-import Index from '@/views/front/Index.vue';
-import Home from '@/views/front/Home.vue';
-import Products from '@/views/front/Product.vue';
-import Detail from '@/views/front/Detail.vue';
-import Checkout from '@/views/front/Checkout.vue';
-import OrderConfrim from '@/views/front/OrderConfirm.vue';
-import LookBook from '@/views/front/Lookbook.vue';
-import Dashboard from '@/views/dashboard/Dashboard.vue';
-import Login from '@/views/dashboard/Login.vue';
-import ProductList from '@/views/dashboard/ProductList.vue';
-import CouponList from '@/views/dashboard/CouponList.vue';
-import OrderList from '@/views/dashboard/OrderList.vue';
-import CheckoutSuccess from '@/views/front/Checkout-success.vue';
+
 Vue.use(VueRouter);
 Vue.use(Vueaxios, axios);
 
@@ -28,17 +14,17 @@ const routes = [
   {
     path: '/',
     name: 'front',
-    component: Index,
+    component: () => import('@/views/front/Index.vue'),
     children: [
       {
         path: '/',
         name: 'home',
-        component: Home,
+        component: () => import('@/views/front/Home.vue'),
       },
       {
         path: '/products/:cat',
         name: 'products',
-        component: Products,
+        component: () => import('@/views/front/Product.vue'),
         beforeEnter: (to, from, next) => {
           if (from.name === null) {
             next();
@@ -52,7 +38,7 @@ const routes = [
       {
         path: '/detail/:id',
         name: 'detail',
-        component: Detail,
+        component: () => import('@/views/front/Detail.vue'),
         beforeEnter: (to, from, next) => {
           if (from.name === null) {
             next();
@@ -66,7 +52,7 @@ const routes = [
       {
         path: '/checkout',
         name: 'checkout',
-        component: Checkout,
+        component: () => import('@/views/front/Checkout.vue'),
         beforeEnter: (to, from, next) => {
           if (from.name === null) {
             next();
@@ -80,7 +66,7 @@ const routes = [
       {
         path: '/order-confirm/:orderId',
         name: 'oreder-confirm',
-        component: OrderConfrim,
+        component: () => import('@/views/front/OrderConfirm.vue'),
         beforeEnter: (to, from, next) => {
           if (from.name === null) {
             next();
@@ -92,78 +78,77 @@ const routes = [
         },
       },
       {
-        path:'/checkout-success/:orderId',
-        name:'checkout-success',
-        component: CheckoutSuccess,
+        path: '/checkout-success/:orderId',
+        name: 'checkout-success',
+        component: () => import('@/views/front/Checkout-success.vue'),
       },
       {
         path: 'about-claires',
         name: 'About-claires',
-        component: LookBook,
+        component: () => import('@/views/front/Lookbook.vue'),
       },
     ],
   },
   {
     path: '/login',
     name: 'login',
-    component: Login,
+    component: () => import('@/views/dashboard/Login.vue'),
   },
-
   {
     path: '/admin',
     name: 'admin',
-    component: Dashboard,
+    component: () => import('@/views/dashboard/Dashboard.vue'),
     meta: { requireAuth: true },
     children: [
       {
         path: 'product-list',
         name: 'product-list',
-        component: ProductList,
+        component: () => import('@/views/dashboard/ProductList.vue'),
         meta: { requiresAuth: true },
 
       },
       {
         path: 'coupon-list',
         name: 'coupon-list',
-        component: CouponList,
+        component: () => import('@/views/dashboard/CouponList.vue'),
         meta: { requiresAuth: true },
 
       },
       {
         path: 'order-list',
         name: 'order-list',
-        component: OrderList,
+        component: () => import('@/views/dashboard/OrderList.vue'),
         meta: { requiresAuth: true },
       },
       {
         path: 'virtual',
         name: 'Adminfront',
-        component: Index,
+        component: () => import('@/views/front/Index.vue'),
         children: [
           {
             path: '/',
             name: 'Adminhome',
-            component: Home,
+            component: () => import('@/views/front/Home.vue'),
           },
           {
             path: 'products/:cat',
             name: 'Adminproducts',
-            component: Products,
+            component: () => import('@/views/front/Product.vue'),
           },
           {
             path: 'detail/:id',
             name: 'Admindetail',
-            component: Detail,
+            component: () => import('@/views/front/Detail.vue'),
           },
           {
             path: 'checkout',
             name: 'Admincheckout',
-            component: Checkout,
+            component: () => import('@/views/front/Checkout.vue'),
           },
           {
             path: 'order-confirm/:orderId',
             name: 'Adminoreder-confirm',
-            component: OrderConfrim,
+            component: () => import('@/views/front/OrderConfirm.vue'),
           },
         ],
       },

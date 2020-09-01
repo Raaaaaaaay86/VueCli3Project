@@ -43,8 +43,8 @@
 
 <script>
 import $ from 'jquery';
-import Navbar from '@/components/pages/dashboard/components/dashNavbar.vue';
-import SideMenu from '@/components/pages/dashboard/components/dashSideMenu.vue';
+import Navbar from '@/components/pages/dashboard/DashNavbar.vue';
+import SideMenu from '@/components/pages/dashboard/DashSideMenu.vue';
 
 export default {
   data() {

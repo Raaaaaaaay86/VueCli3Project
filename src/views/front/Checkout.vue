@@ -158,52 +158,49 @@ export default {
       return this.$store.state.couponValid;
     },
   },
-  created() {
-    // this.getCarts();
-  },
 };
 </script>
 
 <style lang="scss" scoped>
 .qty {
-    &-minus {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding-bottom: 3px;
-        height: 16px;
-        width: 16px;
-        margin-right: 10px;
-        border: 1px solid black;
-        user-select: none;
+  &-minus {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 3px;
+    height: 16px;
+    width: 16px;
+    margin-right: 10px;
+    border: 1px solid black;
+    user-select: none;
 
-        &:hover {
-            transform: scale(1.15);
-        }
-
-        &:active {
-            transform: scale(1);
-        }
+    &:hover {
+      transform: scale(1.15);
     }
 
-    &-plus {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding-bottom: 3px;
-        height: 16px;
-        width: 16px;
-        margin-left: 10px;
-        border: 1px solid black;
-        user-select: none;
-
-        &:hover {
-            transform: scale(1.15);
-        }
-
-        &:active {
-            transform: scale(1);
-        }
+    &:active {
+      transform: scale(1);
     }
+  }
+
+  &-plus {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 3px;
+    height: 16px;
+    width: 16px;
+    margin-left: 10px;
+    border: 1px solid black;
+    user-select: none;
+
+    &:hover {
+      transform: scale(1.15);
+    }
+
+    &:active {
+      transform: scale(1);
+    }
+  }
 }
 </style>
