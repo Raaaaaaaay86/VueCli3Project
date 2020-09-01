@@ -42,7 +42,6 @@
 </template>
 
 <script>
-import $ from 'jquery';
 import Navbar from '@/components/pages/dashboard/DashNavbar.vue';
 import SideMenu from '@/components/pages/dashboard/DashSideMenu.vue';
 
@@ -50,9 +49,6 @@ export default {
   data() {
     return {
       isSticky: false,
-      isShowing: false,
-      isSuccess: true,
-      message: '此為預設系統提示',
     };
   },
   components: { Navbar, SideMenu },
@@ -67,25 +63,17 @@ export default {
         }
       });
     },
-    showToast(success, msg) {
-      const vm = this;
-      vm.isShowing = true;
-
-      if (success) {
-        vm.isSuccess = true;
-      } else {
-        vm.isSuccess = false;
-      }
-
-      vm.message = msg;
-
-      $('#myToast').toast('show');
-    },
   },
-  created() {
-    this.$bus.$on('popToast', (success, msg) => {
-      this.showToast(success, msg);
-    });
+  computed: {
+    isShowing() {
+      return this.$store.state.isShowing;
+    },
+    isSuccess() {
+      return this.$store.state.isSuccess;
+    },
+    message() {
+      return this.$store.state.message;
+    },
   },
 };
 </script>

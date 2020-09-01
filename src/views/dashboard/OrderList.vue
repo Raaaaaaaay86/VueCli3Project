@@ -192,7 +192,7 @@ export default {
 
       vm.$http.put(api, { data: vm.tempOrder }).then((response) => {
         if (response.data.success) {
-          vm.$bus.$emit('popToast', response.data.success, response.data.message);
+          this.$store.dispatch('showToast', { isSuccess: response.data.success, msg: response.data.message });
         }
 
         vm.getOrders();

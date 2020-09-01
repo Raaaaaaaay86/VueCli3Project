@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import axios from 'axios';
+import $ from 'jquery';
 import router from '../router';
 
 Vue.use(Vuex);
@@ -27,6 +28,9 @@ export default new Vuex.Store({
         address: '',
       },
     },
+    isShowing: false,
+    isSuccess: true,
+    message: '此為預設系統提示',
   },
   actions: {
     updateLoading(context, payload) {
@@ -146,6 +150,10 @@ export default new Vuex.Store({
         router.push(`/checkout-success/${payload.routeParam}`);
       });
     },
+    showToast(context, payload) {
+      console.log(payload.isSuccess);
+      context.commit('SHOW_TOAST', { isSuccess: payload.isSuccess, msg: payload.msg });
+    },
   },
   mutations: {
     LOADING(state, payload) {
@@ -198,6 +206,18 @@ export default new Vuex.Store({
     },
     GET_ORDERINFO(state, payload) {
       state.order = payload;
+    },
+    SHOW_TOAST(state, payload) {
+      state.isShowing = true;
+
+      if (payload.isSuccess) {
+        state.isSuccess = true;
+      } else {
+        state.isSuccess = false;
+      }
+
+      state.message = payload.msg;
+      $('#myToast').toast('show');
     },
   },
   modules: {

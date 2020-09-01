@@ -3,7 +3,6 @@ import Vuex from 'vuex';
 import 'jquery';
 import axios from 'axios';
 import Vueaxios from 'vue-axios';
-import './bus';
 import 'bootstrap';
 import Loading from 'vue-loading-overlay';
 import 'vue-loading-overlay/dist/vue-loading.css';

@@ -294,7 +294,7 @@ export default {
 
       vm.$http[method](api, { data: vm.tempProduct }).then((response) => {
         if (response.data.success) {
-          vm.$bus.$emit('popToast', response.data.success, response.data.message);
+          this.$store.dispatch('showToast', { isSuccess: response.data.success, msg: response.data.message });
         }
 
         vm.getProducts();
@@ -308,7 +308,7 @@ export default {
 
       vm.$http.delete(api).then((response) => {
         if (response.data.success) {
-          vm.$bus.$emit('popToast', false, response.data.message);
+          this.$store.dispatch('showToast', { isSuccess: false, msg: response.data.message });
         }
 
         vm.getProducts();
@@ -331,7 +331,7 @@ export default {
           if (response.data.success) {
             vm.$set(vm.tempProduct, 'imageUrl', response.data.imageUrl);
           } else {
-            vm.$bus.$emit('popToast', response.data.success, response.data.message);
+            this.$store.dispatch('showToast', { isSuccess: response.data.success, msg: response.data.message });
           }
         });
     },

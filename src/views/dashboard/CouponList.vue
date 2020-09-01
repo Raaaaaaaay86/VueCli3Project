@@ -244,7 +244,7 @@ export default {
 
       vm.$http[method](api, { data: vm.tempCoupon }).then((response) => {
         if (response.data.success) {
-          vm.$bus.$emit('popToast', response.data.success, response.data.message);
+          this.$store.dispatch('showToast', { isSuccess: response.data.success, msg: response.data.message });
         }
 
         this.getCoupons();
@@ -256,9 +256,9 @@ export default {
       $('#deleteModal').modal('hide');
       vm.$http.delete(api).then((response) => {
         if (response.data.success) {
-          vm.$bus.$emit('popToast', false, response.data.message);
+          this.$store.dispatch('showToast', { isSuccess: false, msg: response.data.message });
         } else {
-          vm.$bus.$emit('popToast', false, response.data.message);
+          this.$store.dispatch('showToast', { isSuccess: false, msg: response.data.message });
         }
 
         vm.getCoupons();
