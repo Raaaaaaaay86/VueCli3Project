@@ -94,28 +94,32 @@ export default new Vuex.Store({
     },
     getProducts(context, payload) {
       const api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_CUSTOM}/products?page=${payload.page}`;
-
-      // payload: { page, cat: this.$route.params.cat }
+      const allApi = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_CUSTOM}/products/all`;
+      // payload: { page, cat: this.$route.params.cat };
+      if (payload.cat === 'all') {
+        axios.get(api).then((response) => {
+          context.commit('GET_PRODUCTS', {
+            products: response.data.products,
+            pagination: response.data.pagination,
+          });
+        });
+      } else {
+        axios.get(allApi).then((response) => {
+          const filtered = response.data.products.filter((el) => el.category === payload.cat);
+          context.commit('GET_PRODUCTS', {
+            products: filtered,
+            pagination: null,
+          });
+        });
+      }
+    },
+    getRandom(context) {
+      const api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_CUSTOM}/products/all`;
       axios.get(api).then((response) => {
-        if (payload.cat === 'all') {
-          context.commit('GET_PRODUCTS',
-            {
-              products: response.data.products,
-              pagiantion: response.data.pagination,
-            });
-
-          if (payload.for === 'carousel') {
-            context.commit('RANDOM_CAROUSEL', response.data.products);
-          } else if (payload.for === 'similar') {
-            context.commit('RANDOM_PRODUCTS', response.data.products);
-          }
-        } else {
-          context.commit('GET_PRODUCTS',
-            {
-              products: response.data.products.filter((el) => el.category === payload.cat),
-              pagiantion: response.data.pagination,
-            });
-        }
+        console.log(response);
+        const fetched = response.data.products;
+        context.commit('RANDOM_CAROUSEL', fetched);
+        context.commit('RANDOM_PRODUCTS', fetched);
       });
     },
     useCoupon(context, payload) {
@@ -182,7 +186,18 @@ export default new Vuex.Store({
     },
     GET_PRODUCTS(state, payload) {
       state.products = payload.products;
-      state.pagination = payload.pagiantion;
+
+      if (payload.pagination === null) {
+        state.pagination = {
+          total_pages: 1,
+          current_page: 1,
+          has_pre: false,
+          has_next: false,
+          category: null,
+        };
+      } else {
+        state.pagination = payload.pagination;
+      }
     },
     RANDOM_PRODUCTS(state, payload) {
       const fetched = payload;

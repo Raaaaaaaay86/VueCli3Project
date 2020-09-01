@@ -89,9 +89,6 @@ export default {
   },
   created() {
     this.getCarts();
-    this.$bus.$on('reupdateCarts', () => {
-      this.getCarts();
-    });
   },
   watch: {
     $route(to) {

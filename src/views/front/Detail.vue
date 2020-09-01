@@ -229,8 +229,8 @@ export default {
     addToCart(id, qty = 1) {
       this.$store.dispatch('addToCart', { id, qty });
     },
-    getProducts(page = 1) {
-      this.$store.dispatch('getProducts', { page, cat: 'all', for: 'similar' });
+    getRandomProducts() {
+      this.$store.dispatch('getRandom');
     },
   },
   computed: {
@@ -246,12 +246,12 @@ export default {
   },
   created() {
     this.getSingle();
-    this.getProducts();
+    this.getRandomProducts();
   },
   watch: {
     $route() {
       this.getSingle();
-      this.getProducts();
+      this.getRandomProducts();
       window.scrollTo(0, 0);
     },
   },

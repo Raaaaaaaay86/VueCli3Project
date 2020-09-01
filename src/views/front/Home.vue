@@ -210,8 +210,9 @@ export default {
     };
   },
   methods: {
-    getProducts(page = 1) {
-      this.$store.dispatch('getProducts', { page, cat: 'all', for: 'carousel' });
+    getRandomProducts() {
+      // this.$store.dispatch('getProducts', { page, cat: 'all', for: 'carousel' });
+      this.$store.dispatch('getRandom');
     },
   },
   computed: {
@@ -220,7 +221,7 @@ export default {
     },
   },
   created() {
-    this.getProducts();
+    this.getRandomProducts();
     window.scrollTo(0, 0);
   },
   updated() {
