@@ -2,7 +2,7 @@
   <div>
     <div class="row mt-3 mt-md-0">
       <div class="col px-0">
-        <nav class="navbar navbar-expand-lg border-bottom border-primary navbar-light bg-white justify-content-between">
+        <nav class="navbar navbar-expand-md border-bottom border-primary navbar-light bg-white justify-content-between">
           <button class="navbar-toggler" id="toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
