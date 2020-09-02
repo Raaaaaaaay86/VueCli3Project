@@ -1,10 +1,12 @@
 <template>
   <div>
     <div class="row d-flex align-items-center justify-content-center">
-      <div class="col-md-12 pl-5 pt-5 bg-cover product-header">
-        <p class="h3 text-primary font-weight-bolder">2020秋冬 全新感受</p>
-        <small class="d-block mb-3 text-primary">CLAIRE'S團隊打造的新色彩美學</small>
-        <router-link to="/checkout" tag="button" class="btn btn-sm btn-primary">查看購物車</router-link>
+      <div class="col-md-12 bg-cover product-header">
+        <div class="header-info">
+          <p class="h3 text-primary font-weight-bolder">2020秋冬 全新感受</p>
+          <small class="d-block mb-3 text-primary">CLAIRE'S團隊打造的新色彩美學</small>
+          <router-link to="/checkout" tag="button" class="btn btn-sm btn-primary">查看購物車</router-link>
+        </div>
       </div>
     </div>
 
@@ -67,12 +69,19 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
 .product-header {
   background-image: url(../../assets/imgs/productHeader.jpg);
   height: 500px;
   @media(max-width: 768px){
     height: 350px;
   }
+}
+
+.header-info {
+  position: absolute;
+  top: 15%;
+  left: 15%;
 }
 
 a {

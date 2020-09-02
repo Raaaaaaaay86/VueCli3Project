@@ -29,21 +29,21 @@
     </div>
 
     <div class="row no-gutters">
-      <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+      <div class="col-md-4" data-aos="fade-up" data-aos-once="true" data-aos-delay="100">
         <div
           class="bg-cover"
           :style="{ backgroundImage: 'url(' + require('@/assets/imgs/lookbook/human02.jpg') + ')' }"
           style="height:400px;"
         ></div>
       </div>
-      <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+      <div class="col-md-4" data-aos="fade-up" data-aos-once="true" data-aos-delay="200">
         <div
           class="bg-cover"
           :style="{ backgroundImage: 'url(' + require('@/assets/imgs/lookbook/human0202.jpg') + ')' }"
           style="height:400px;"
         ></div>
       </div>
-      <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+      <div class="col-md-4" data-aos="fade-up" data-aos-once="true" data-aos-delay="300">
         <div
           class="bg-cover"
           :style="{ backgroundImage: 'url(' + require('@/assets/imgs/lookbook/human0203.jpg') + ')' }"
@@ -61,7 +61,7 @@
       </div>
     </div>
 
-    <div class="row" data-aos="fade-up">
+    <div class="row" data-aos="fade-up" data-aos-once="true">
       <div class="col">
         <div
           class="bg-cover"
@@ -85,6 +85,7 @@
         class="col-md-4 d-flex flex-column align-items-center"
         data-aos="fade-up"
         data-aos-delay="100"
+        data-aos-once="true"
       >
         <div
           class="mb-3 rounded-circle bg-cover"
@@ -102,6 +103,7 @@
         class="col-md-4 d-flex flex-column align-items-center"
         data-aos="fade-up"
         data-aos-delay="200"
+        data-aos-once="true"
       >
         <div
           class="mb-3 rounded-circle bg-cover"
@@ -119,6 +121,7 @@
         class="col-md-4 d-flex flex-column align-items-center"
         data-aos="fade-up"
         data-aos-delay="300"
+        data-aos-once="true"
       >
         <div
           class="mb-3 rounded-circle bg-cover test"
