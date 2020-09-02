@@ -30,9 +30,9 @@ export default {
       context.commit('LOADING', true);
 
       if (this.state.CartsModule.carts.carts.some((el) => el.product_id === payload.id)) {
-        const index = this.state.carts.carts.findIndex((el) => el.product_id === payload.id);
-        const orderId = this.state.carts.carts[index].id;
-        const originalQty = this.state.carts.carts[index].qty;
+        const index = this.state.CartsModule.carts.carts.findIndex((el) => el.product_id === payload.id);
+        const orderId = this.state.CartsModule.carts.carts[index].id;
+        const originalQty = this.state.CartsModule.carts.carts[index].qty;
         const addData = { product_id: payload.id, qty: payload.qty + originalQty };
         const removeApi = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_CUSTOM}/cart/${orderId}`;
 

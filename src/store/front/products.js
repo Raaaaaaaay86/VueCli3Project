@@ -24,7 +24,6 @@ export default {
       // payload: { page, cat: this.$route.params.cat };
       if (payload.cat === 'all') {
         axios.get(api).then((response) => {
-          console.log(response);
           context.commit('GET_PRODUCTS', {
             products: response.data.products,
             pagination: response.data.pagination,
