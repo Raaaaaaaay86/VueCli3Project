@@ -2,10 +2,7 @@
   <div>
     <div class="row my-5">
       <transition name="fade">
-        <div
-          class="col-md-6 d-flex justify-content-center"
-          v-if="product.title"
-        >
+        <div class="col-md-6 d-flex justify-content-center" v-if="product.title">
           <img :src="product.imageUrl" width="300" />
         </div>
       </transition>
@@ -38,22 +35,12 @@
               <div class="form-group w-100 mb-0">
                 <label for="productNum">選購商品數量</label>
                 <select class="form-control" id="productNum" v-model="qty">
-                  <option
-                    v-for="num in 5"
-                    :key="num"
-                    :value="num"
-                  >{{ num }} {{ product.unit }}</option>
+                  <option v-for="num in 5" :key="num" :value="num">{{ num }} {{ product.unit }}</option>
                 </select>
               </div>
             </div>
-            <div
-              class="col-md-3 mt-3 mt-md-0 d-flex align-items-end justify-content-sm-start justify-content-md-end"
-            >
-              <button
-                v-if="!isClicked"
-                class="btn btn-primary"
-                @click.prevent="addToCart(product.id, qty)"
-              >加入購物車</button>
+            <div class="col-md-3 mt-3 mt-md-0 d-flex align-items-end justify-content-sm-start justify-content-md-end">
+              <button v-if="!isClicked" class="btn btn-primary" @click.prevent="addToCart(product.id, qty)">加入購物車</button>
               <button v-else class="btn btn-primary">
                 加入中
                 <i class="fas fa-spinner fa-spin ml-1"></i>
@@ -71,10 +58,7 @@
         </div>
       </div>
       <div class="col-md-5 d-flex justify-content-center">
-        <div
-          class="evaluation d-flex flex-column justify-content-center align-items-center text-primary"
-          style="width:100px;height:100px"
-        >
+        <div class="evaluation d-flex flex-column justify-content-center align-items-center text-primary" style="width:100px;height:100px">
           <p class="evaluation-value mb-0">4.5</p>
           <p class="evaluation-title mb-0">商品評價</p>
         </div>
@@ -133,9 +117,7 @@
     </div>
 
     <div class="row mt-3 d-flex justify-content-center">
-      <div
-        class="col-10 mb-3 d-flex justify-content-between border-bottom border-primary"
-      >
+      <div class="col-10 mb-3 d-flex justify-content-between border-bottom border-primary">
         <div>
           <p class="mb-0">陳**</p>
           <span class="text-warning">
@@ -147,9 +129,7 @@
           <p>2020-08-15</p>
         </div>
       </div>
-      <div
-        class="col-10 mb-3 d-flex justify-content-between border-bottom border-primary"
-      >
+      <div class="col-10 mb-3 d-flex justify-content-between border-bottom border-primary">
         <div>
           <p class="mb-0">楊**</p>
           <span class="text-warning">
@@ -171,41 +151,21 @@
         </div>
       </div>
 
-      <router-link
-        tag="a"
-        :to="{ name: 'detail', params: { id: product.id } }"
-        class="col-6 col-md-3 mb-3 d-flex justify-content-center"
-        v-for="product in randomProducts"
-        :key="product.id"
-      >
+      <router-link tag="a" :to="{ name: 'detail', params: { id: product.id } }" class="col-6 col-md-3 mb-3 d-flex justify-content-center" v-for="product in randomProducts" :key="product.id">
         <div class="card" style="width:75%">
-          <div
-            class="card-img-top bg-contain"
-            style="min-height:150px"
-            :style="{ backgroundImage: `url(${product.imageUrl})` }"
-          ></div>
+          <div class="card-img-top bg-contain" style="min-height:150px" :style="{ backgroundImage: `url(${product.imageUrl})` }"></div>
           <div class="card-body px-1">
             <div class="text-center">
-              <router-link
-                :to="{ name: 'detail', params: { id: product.id } }"
-                tag="a"
-                class="card-title mb-0 font-weight-bolder"
-              >
-                {{ product.title }}
-              </router-link>
+              <router-link :to="{ name: 'detail', params: { id: product.id } }" tag="a" class="card-title mb-0 font-weight-bolder">{{ product.title }}</router-link>
               <p class="card-text mb-1">{{ product.description }}</p>
-              <small class="mb-3">{{ product.price | currency }}</small>
-              <small class="d-block mt-1">
-                <router-link
-                  :to="{ name: 'detail', params: { id: product.id } }"
-                >查看詳情</router-link>
+              <small>
+                <del>原價: {{ product.origin_price | currency }}</del>
               </small>
-              <small class="d-block">
-                <a href="#" @click.prevent="addToCart(product.id)">
-                  <i class="fas fa-shopping-cart"></i>
-                  加入購物車
-                </a>
-              </small>
+              <p class="mb-3">特惠價: {{ product.price | currency }}</p>
+              <a href="#" class="d-block link-add mt-2 btn btn-lg btn-primary" @click.prevent="addToCart(product.id)">
+                <i class="fas fa-shopping-cart"></i>
+                加入購物車
+              </a>
             </div>
           </div>
         </div>
@@ -268,6 +228,28 @@ export default {
   }
   &-title {
     font-size: 16px;
+  }
+}
+
+a {
+  text-decoration: none;
+}
+
+.card {
+  transition: 0.1s;
+  width: 75%;
+  @media (max-width: 768px) {
+    width: 90%;
+  }
+  &-text {
+    font-size: 12px;
+  }
+  &:hover {
+    transform: scale(1.02);
+    box-shadow: 0px 3px 5px rgba(189, 195, 199, 0.7);
+  }
+  &-body {
+    padding: 20px 5px;
   }
 }
 </style>

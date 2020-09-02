@@ -3,12 +3,7 @@
     <loading :active.sync="isLoading"></loading>
     <!--ADD BTN-->
     <div class="d-flex justify-content-sm-end">
-      <button
-        class="btn bnt-lg btn-secondary my-3"
-        @click.prevent="openModal(null, true, 'detailModal')"
-      >
-        建立新商品
-      </button>
+      <button class="btn bnt-lg btn-secondary my-3" @click.prevent="openModal(null, true, 'detailModal')">建立新商品</button>
     </div>
     <!--TABLE-->
     <table class="table table-hover">
@@ -37,18 +32,8 @@
             <span class="text-danger" v-else>未啟用</span>
           </td>
           <td class="d-flex">
-            <button
-              class="btn btn-sm btn-secondary mr-1"
-              @click.prevent="openModal(product, false, 'detailModal')"
-            >
-              編輯
-            </button>
-            <button
-              class="btn btn-sm btn-outline-danger"
-              @click.prevent="openModal(product, false, 'deleteModal')"
-            >
-              刪除
-            </button>
+            <button class="btn btn-sm btn-secondary mr-1" @click.prevent="openModal(product, false, 'detailModal')">編輯</button>
+            <button class="btn btn-sm btn-outline-danger" @click.prevent="openModal(product, false, 'deleteModal')">刪除</button>
           </td>
         </tr>
       </tbody>
@@ -74,57 +59,31 @@
                   <form>
                     <div class="form-group">
                       <label for="imgUrl">輸入圖片網址</label>
-                      <input
-                        v-model="tempProduct.imageUrl"
-                        type="url"
-                        class="form-control"
-                        id="imgUrl"
-                      />
+                      <input v-model="tempProduct.imageUrl" type="url" class="form-control" id="imgUrl" />
                     </div>
                     <div class="form-group">
                       <label for="imgUpload">或 上傳圖片</label>
-                      <input
-                        type="file"
-                        ref="files"
-                        class="form-control"
-                        id="imgUpload"
-                        @change="uploadFile"
-                      />
+                      <input type="file" ref="files" class="form-control" id="imgUpload" @change="uploadFile" />
                     </div>
-                    <img :src="tempProduct.imageUrl" class="img-fluid" alt="" />
+                    <img :src="tempProduct.imageUrl" class="img-fluid" alt />
                   </form>
                 </div>
                 <div class="col-md-8">
                   <div class="form-group">
                     <label for="productTitle">商品標題</label>
-                    <input
-                      v-model="tempProduct.title"
-                      type="text"
-                      class="form-control"
-                      id="productTitle"
-                    />
+                    <input v-model="tempProduct.title" type="text" class="form-control" id="productTitle" />
                   </div>
                   <div class="form-row">
                     <div class="col">
                       <div class="form-group">
                         <label for="productCat">分類</label>
-                        <input
-                          v-model="tempProduct.category"
-                          type="text"
-                          class="form-control"
-                          id="productCat"
-                        />
+                        <input v-model="tempProduct.category" type="text" class="form-control" id="productCat" />
                       </div>
                     </div>
                     <div class="col">
                       <div class="form-group">
                         <label for="productUnit">單位</label>
-                        <input
-                          v-model="tempProduct.unit"
-                          type="text"
-                          class="form-control"
-                          id="productUnit"
-                        />
+                        <input v-model="tempProduct.unit" type="text" class="form-control" id="productUnit" />
                       </div>
                     </div>
                   </div>
@@ -132,53 +91,26 @@
                     <div class="col">
                       <div class="form-group">
                         <label for="originPrice">原價</label>
-                        <input
-                          v-model="tempProduct.origin_price"
-                          type="text"
-                          class="form-control"
-                          id="originPrice"
-                        />
+                        <input v-model="tempProduct.origin_price" type="text" class="form-control" id="originPrice" />
                       </div>
                     </div>
                     <div class="col">
                       <div class="form-group">
                         <label for="CurrentPrice">售價</label>
-                        <input
-                          v-model="tempProduct.price"
-                          type="text"
-                          class="form-control"
-                          id="CurrentPrice"
-                        />
+                        <input v-model="tempProduct.price" type="text" class="form-control" id="CurrentPrice" />
                       </div>
                     </div>
                   </div>
                   <div class="form-group">
                     <label for="description">商品描述</label>
-                    <textarea
-                      v-model="tempProduct.description"
-                      class="form-control"
-                      id="description"
-                      rows="3"
-                    ></textarea>
+                    <textarea v-model="tempProduct.description" class="form-control" id="description" rows="3"></textarea>
                   </div>
                   <div class="form-group">
                     <label for="content">商品內容</label>
-                    <textarea
-                      v-model="tempProduct.content"
-                      class="form-control"
-                      id="content"
-                      rows="3"
-                    ></textarea>
+                    <textarea v-model="tempProduct.content" class="form-control" id="content" rows="3"></textarea>
                   </div>
                   <div class="custom-control custom-checkbox">
-                    <input
-                      v-model="tempProduct.is_enabled"
-                      true-value="1"
-                      false-value="0"
-                      type="checkbox"
-                      class="custom-control-input"
-                      id="enable"
-                    />
+                    <input v-model="tempProduct.is_enabled" true-value="1" false-value="0" type="checkbox" class="custom-control-input" id="enable" />
                     <label class="custom-control-label" for="enable">是否啟用</label>
                   </div>
                 </div>
@@ -187,27 +119,17 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary" @click.prevent="updateProduct">
-              Save changes
-            </button>
+            <button type="button" class="btn btn-primary" @click.prevent="updateProduct">Save changes</button>
           </div>
         </div>
       </div>
     </div>
     <!--DELETE MODAL-->
-    <div
-      class="modal fade"
-      id="deleteModal"
-      tabindex="-1"
-      aria-labelledby="deleteModalLabel"
-      aria-hidden="true"
-    >
+    <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header bg-danger text-white font-weight-bold">
-            <h5 class="modal-title" id="deleteModalLabel">
-              刪除商品
-            </h5>
+            <h5 class="modal-title" id="deleteModalLabel">刪除商品</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -221,13 +143,7 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
-            <button
-              type="button"
-              class="btn btn-danger"
-              @click.prevent="deleteProduct(tempProduct)"
-            >
-              刪除
-            </button>
+            <button type="button" class="btn btn-danger" @click.prevent="deleteProduct(tempProduct)">刪除</button>
           </div>
         </div>
       </div>

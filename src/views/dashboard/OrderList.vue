@@ -17,7 +17,11 @@
         <tr v-for="order in orders" :key="order.id">
           <td>
             <p class="mb-0">{{ order.create_at | timeStamp }}</p>
-            <small class="mb-0">訂單編號:<br />{{ order.id }}</small>
+            <small class="mb-0">
+              訂單編號:
+              <br />
+              {{ order.id }}
+            </small>
           </td>
           <td>
             <p class="mb-0">姓名: {{ order.user.name }}</p>
@@ -28,9 +32,7 @@
           <td>
             <p class="mb-0" v-for="(product, i) in order.products" :key="i">
               - {{ product.product.title }}
-              <span class="text-success font-weight-bolder">
-                {{ product.qty }}{{ product.product.unit }}
-              </span>
+              <span class="text-success font-weight-bolder">{{ product.qty }}{{ product.product.unit }}</span>
             </p>
           </td>
           <td class="text-right">{{ order.total | currency }}</td>
@@ -46,13 +48,7 @@
     </table>
 
     <!-- Modal -->
-    <div
-      class="modal fade"
-      id="orderModal"
-      tabindex="-1"
-      aria-labelledby="orderModalLabel"
-      aria-hidden="true"
-    >
+    <div class="modal fade" id="orderModal" tabindex="-1" aria-labelledby="orderModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-lg">
         <div class="modal-content">
           <div class="modal-header">
@@ -68,12 +64,7 @@
                   <p class="mb-0">訂單編號: {{ tempOrder.id }}</p>
                 </div>
                 <div class="col d-flex align-items-sm-center">
-                  <input
-                    v-model="tempOrder.is_paid"
-                    class="d-inline mr-1"
-                    type="checkbox"
-                    id="customCheck1"
-                  />
+                  <input v-model="tempOrder.is_paid" class="d-inline mr-1" type="checkbox" id="customCheck1" />
                   <p class="mb-0">
                     付款狀態:
                     <span class="text-success" v-if="tempOrder.is_paid">已付款</span>
@@ -85,23 +76,13 @@
                 <div class="col-6">
                   <div class="form-group">
                     <label for="userName">收件人姓名</label>
-                    <input
-                      v-model="tempOrder.user.name"
-                      type="text"
-                      class="form-control"
-                      id="userName"
-                    />
+                    <input v-model="tempOrder.user.name" type="text" class="form-control" id="userName" />
                   </div>
                 </div>
                 <div class="col-6">
                   <div class="form-group">
                     <label for="userTel">連絡電話</label>
-                    <input
-                      v-model="tempOrder.user.tel"
-                      type="tel"
-                      class="form-control"
-                      id="userTel"
-                    />
+                    <input v-model="tempOrder.user.tel" type="tel" class="form-control" id="userTel" />
                   </div>
                 </div>
               </div>
@@ -109,12 +90,7 @@
                 <div class="col">
                   <div class="form-group">
                     <label for="userEmail">電子信箱</label>
-                    <input
-                      v-model="tempOrder.user.email"
-                      type="email"
-                      class="form-control"
-                      id="userEmail"
-                    />
+                    <input v-model="tempOrder.user.email" type="email" class="form-control" id="userEmail" />
                   </div>
                 </div>
               </div>
@@ -122,12 +98,7 @@
                 <div class="col">
                   <div class="form-group">
                     <label for="userAddress">收件地址</label>
-                    <input
-                      v-model="tempOrder.user.address"
-                      type="address"
-                      class="form-control"
-                      id="userAddress"
-                    />
+                    <input v-model="tempOrder.user.address" type="address" class="form-control" id="userAddress" />
                   </div>
                 </div>
               </div>
@@ -135,9 +106,7 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
-            <button type="button" class="btn btn-primary" @click.prevent="updateOrder">
-              修改訂單
-            </button>
+            <button type="button" class="btn btn-primary" @click.prevent="updateOrder">修改訂單</button>
           </div>
         </div>
       </div>

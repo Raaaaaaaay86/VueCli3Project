@@ -3,12 +3,7 @@
     <loading :active.sync="isLoading"></loading>
     <!--ADD BTN-->
     <div class="d-flex justify-content-sm-end">
-      <button
-        class="btn bnt-lg btn-secondary my-3"
-        @click.prevent="openModal(null, true, 'couponModal')"
-      >
-        建立優惠券
-      </button>
+      <button class="btn bnt-lg btn-secondary my-3" @click.prevent="openModal(null, true, 'couponModal')">建立優惠券</button>
     </div>
     <!--TABLE-->
     <table class="table table-hover">
@@ -37,39 +32,19 @@
             <span class="text-danger" v-else>未啟用</span>
           </td>
           <td class="d-flex">
-            <button
-              class="btn btn-sm btn-secondary mr-1"
-              @click.prevent="openModal(coupon, false, 'couponModal')"
-            >
-              編輯
-            </button>
-            <button
-              class="btn btn-sm btn-outline-danger"
-              @click.prevent="openModal(coupon, false, 'deleteModal')"
-            >
-              刪除
-            </button>
+            <button class="btn btn-sm btn-secondary mr-1" @click.prevent="openModal(coupon, false, 'couponModal')">編輯</button>
+            <button class="btn btn-sm btn-outline-danger" @click.prevent="openModal(coupon, false, 'deleteModal')">刪除</button>
           </td>
         </tr>
       </tbody>
     </table>
     <!-- Modal -->
-    <div
-      class="modal fade"
-      id="couponModal"
-      tabindex="-1"
-      aria-labelledby="couponModalLabel"
-      aria-hidden="true"
-    >
+    <div class="modal fade" id="couponModal" tabindex="-1" aria-labelledby="couponModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 v-if="isNew" class="modal-title" id="couponModalLabel">
-              建立優惠券
-            </h5>
-            <h5 v-else class="modal-title" id="couponModalLabel">
-              修改優惠券
-            </h5>
+            <h5 v-if="isNew" class="modal-title" id="couponModalLabel">建立優惠券</h5>
+            <h5 v-else class="modal-title" id="couponModalLabel">修改優惠券</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -78,65 +53,38 @@
             <div class="modal-body">
               <div class="form-group">
                 <label for="couponTitle">活動名稱</label>
-                <input
-                  v-model="tempCoupon.title"
-                  type="text"
-                  class="form-control"
-                  id="couponTitle"
-                />
+                <input v-model="tempCoupon.title" type="text" class="form-control" id="couponTitle" />
               </div>
               <div class="form-group">
                 <label for="couponCode">優惠代碼</label>
                 <input v-model="tempCoupon.code" type="text" class="form-control" id="couponCode" />
               </div>
               <div class="form-group">
-                <label for="couponDueDate"
-                  >到期日
-                  <span class="text-danger" v-if="tempCoupon.due_date">{{
+                <label for="couponDueDate">
+                  到期日
+                  <span class="text-danger" v-if="tempCoupon.due_date">
+                    {{
                     tempCoupon.due_date | timeStamp
-                  }}</span></label
-                >
+                    }}
+                  </span>
+                </label>
                 <ValidationProvider rules="required" v-slot="{ errors }">
-                  <input
-                    v-model="tempCoupon.due_date"
-                    name="日期"
-                    type="date"
-                    class="form-control"
-                    id="couponDueDate"
-                  />
+                  <input v-model="tempCoupon.due_date" name="日期" type="date" class="form-control" id="couponDueDate" />
                   <span class="text-danger">{{ errors[0] }}</span>
                 </ValidationProvider>
               </div>
               <div class="form-group">
                 <label for="couponDiscount">折扣百分比</label>
-                <input
-                  v-model="tempCoupon.percent"
-                  type="number"
-                  class="form-control"
-                  id="couponDiscount"
-                />
+                <input v-model="tempCoupon.percent" type="number" class="form-control" id="couponDiscount" />
               </div>
               <div class="custom-control custom-checkbox">
-                <input
-                  v-model="tempCoupon.is_enabled"
-                  true-value="1"
-                  false-value="0"
-                  type="checkbox"
-                  class="custom-control-input"
-                  id="enable"
-                />
+                <input v-model="tempCoupon.is_enabled" true-value="1" false-value="0" type="checkbox" class="custom-control-input" id="enable" />
                 <label class="custom-control-label" for="enable">是否啟用</label>
               </div>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button
-                type="button"
-                class="btn btn-primary"
-                @click.prevent="handleSubmit(updateCoupon)"
-              >
-                Save changes
-              </button>
+              <button type="button" class="btn btn-primary" @click.prevent="handleSubmit(updateCoupon)">Save changes</button>
             </div>
           </validation-observer>
         </div>
@@ -146,19 +94,11 @@
     <!--Pagiantion-->
     <Pagination :pages="pagination" v-on:change-page="getCoupons" />
     <!--DELETE MODAL-->
-    <div
-      class="modal fade"
-      id="deleteModal"
-      tabindex="-1"
-      aria-labelledby="deleteModalLabel"
-      aria-hidden="true"
-    >
+    <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header bg-danger text-white font-weight-bold">
-            <h5 class="modal-title" id="deleteModalLabel">
-              刪除優惠券
-            </h5>
+            <h5 class="modal-title" id="deleteModalLabel">刪除優惠券</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -172,13 +112,7 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
-            <button
-              type="button"
-              class="btn btn-danger"
-              @click.prevent="deleteCoupon(tempCoupon.id)"
-            >
-              刪除
-            </button>
+            <button type="button" class="btn btn-danger" @click.prevent="deleteCoupon(tempCoupon.id)">刪除</button>
           </div>
         </div>
       </div>

@@ -3,27 +3,14 @@
     <form class="form-signin" @submit.prevent="login">
       <h1 class="h3 mb-3 font-weight-normal text-center">管理後台</h1>
       <label for="inputEmail" class="sr-only">電子信箱</label>
-      <input
-        v-model="form.username"
-        type="email"
-        id="inputEmail"
-        class="form-control"
-        placeholder="Email address"
-        required
-        autofocus
-      />
+      <input v-model="form.username" type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus />
       <label for="inputPassword" class="sr-only">密碼</label>
-      <input
-        v-model="form.password"
-        type="password"
-        id="inputPassword"
-        class="form-control mb-0"
-        placeholder="Password"
-        required
-      />
+      <input v-model="form.password" type="password" id="inputPassword" class="form-control mb-0" placeholder="Password" required />
       <p class="text-danger h6 my-2">{{ message }}</p>
       <div class="checkbox mb-3">
-        <label> <input type="checkbox" value="remember-me" /> 記住我 </label>
+        <label>
+          <input type="checkbox" value="remember-me" /> 記住我
+        </label>
       </div>
       <button class="btn btn-lg btn-primary btn-block" type="submit">登入</button>
       <p class="mt-5 mb-3 text-muted">&copy; 2020 Aug</p>

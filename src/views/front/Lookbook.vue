@@ -4,7 +4,7 @@
       <div class="col">
         <div
           class="w-100 bg-cover"
-          :style="{ backgroundImage: 'url(' + require('@/../static/head03.jpg') + ')' }"
+          :style="{ backgroundImage: 'url(' + require('@/assets/imgs/lookbook/head03.jpg') + ')' }"
           style="height:500px;"
         >
           <div class="header-txt position-absolute">
@@ -32,22 +32,22 @@
       <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
         <div
           class="bg-cover"
-          :style="{ backgroundImage: 'url(' + require('@/../static/human02.jpg') + ')' }"
+          :style="{ backgroundImage: 'url(' + require('@/assets/imgs/lookbook/human02.jpg') + ')' }"
           style="height:400px;"
         ></div>
       </div>
       <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
         <div
           class="bg-cover"
-          :style="{ backgroundImage: 'url(' + require('@/../static/human0202.jpg') + ')' }"
+          :style="{ backgroundImage: 'url(' + require('@/assets/imgs/lookbook/human0202.jpg') + ')' }"
           style="height:400px;"
         ></div>
       </div>
       <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
         <div
           class="bg-cover"
-          :style="{ backgroundImage: 'url(' + require('@/../static/human0203.jpg') + ')' }"
-          style="height:400px;background-image:url('@/../static/human0203.jpg')"
+          :style="{ backgroundImage: 'url(' + require('@/assets/imgs/lookbook/human0203.jpg') + ')' }"
+          style="height:400px;"
         ></div>
       </div>
     </div>
@@ -65,7 +65,7 @@
       <div class="col">
         <div
           class="bg-cover"
-          :style="{ backgroundImage: 'url(' + require('@/../static/animal01.jpg') + ')' }"
+          :style="{ backgroundImage: 'url(' + require('@/assets/imgs/lookbook/animal01.jpg') + ')' }"
           style="height:500px;"
         ></div>
       </div>
@@ -88,7 +88,7 @@
       >
         <div
           class="mb-3 rounded-circle bg-cover"
-          :style="{ backgroundImage: 'url(' + require('@/../static/profile02.jpg') + ')' }"
+          :style="{ backgroundImage: 'url(' + require('@/assets/imgs/lookbook/profile02.jpg') + ')' }"
           style="width:150px;height:150px;"
         ></div>
         <p class="h5 mb-3">Mishy 老師</p>
@@ -105,7 +105,7 @@
       >
         <div
           class="mb-3 rounded-circle bg-cover"
-          :style="{ backgroundImage: 'url(' + require('@/../static/profile01.jpg') + ')' }"
+          :style="{ backgroundImage: 'url(' + require('@/assets/imgs/lookbook/profile01.jpg') + ')' }"
           style="width:150px;height:150px;"
         ></div>
         <p class="h5 mb-3">Sam 總監</p>
@@ -122,7 +122,7 @@
       >
         <div
           class="mb-3 rounded-circle bg-cover test"
-          :style="{ backgroundImage: 'url(' + require('@/../static/profile03.jpg') + ')' }"
+          :style="{ backgroundImage: 'url(' + require('@/assets/imgs/lookbook/profile03.jpg') + ')' }"
           style="width:150px;height:150px;"
         ></div>
         <p class="h5 mb-3">Kimmy 老師</p>

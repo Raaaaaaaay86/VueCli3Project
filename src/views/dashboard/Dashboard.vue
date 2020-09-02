@@ -17,25 +17,15 @@
 
     <div style="position: absolute; top: 70px; right: 35px;z-index:1010;">
       <!-- Then put toasts within -->
-      <div
-        class="toast hide"
-        style="min-width:300px;"
-        data-delay="5000"
-        id="myToast"
-        role="alert"
-        aria-live="assertive"
-        aria-atomic="true"
-      >
-        <div class="toast-header " :class="{ lightGreen: isSuccess, lightRed: !isSuccess }">
+      <div class="toast hide" style="min-width:300px;" data-delay="5000" id="myToast" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header" :class="{ lightGreen: isSuccess, lightRed: !isSuccess }">
           <strong class="mr-auto">系統提示</strong>
           <i class="fas fa-comment-dots mr-3"></i>
           <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div class="toast-body" :class="{ lightGreen09: isSuccess, lightRed09: !isSuccess }">
-          {{ message }}
-        </div>
+        <div class="toast-body" :class="{ lightGreen09: isSuccess, lightRed09: !isSuccess }">{{ message }}</div>
       </div>
     </div>
   </div>
