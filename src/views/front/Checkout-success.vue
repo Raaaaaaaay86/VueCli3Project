@@ -65,7 +65,7 @@ export default {
   },
   computed: {
     order() {
-      return this.$store.state.order;
+      return this.$store.state.CheckoutModule.order;
     },
   },
   created() {

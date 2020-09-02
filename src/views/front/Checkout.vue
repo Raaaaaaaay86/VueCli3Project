@@ -154,10 +154,10 @@ export default {
   },
   computed: {
     carts() {
-      return this.$store.state.carts;
+      return this.$store.state.CartsModule.carts;
     },
     couponValid() {
-      return this.$store.state.couponValid;
+      return this.$store.state.CheckoutModule.couponValid;
     },
   },
 };

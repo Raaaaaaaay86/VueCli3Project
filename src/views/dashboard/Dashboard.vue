@@ -56,13 +56,13 @@ export default {
   },
   computed: {
     isShowing() {
-      return this.$store.state.isShowing;
+      return this.$store.state.ToastModule.isShowing;
     },
     isSuccess() {
-      return this.$store.state.isSuccess;
+      return this.$store.state.ToastModule.isSuccess;
     },
     message() {
-      return this.$store.state.message;
+      return this.$store.state.ToastModule.message;
     },
   },
 };

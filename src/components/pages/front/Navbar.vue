@@ -90,7 +90,7 @@ export default {
   },
   computed: {
     carts() {
-      return this.$store.state.carts;
+      return this.$store.state.CartsModule.carts;
     },
     isEmpty() {
       return this.$store.state.isEmpty;
