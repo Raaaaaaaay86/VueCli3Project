@@ -23,7 +23,7 @@
         v-for="product in products"
         :key="product.id"
       >
-        <div class="card" style="width:75%">
+        <div class="card">
           <div
             class="card-img-top bg-contain"
             style="min-height:150px"
@@ -39,18 +39,12 @@
                 {{ product.title }}
               </router-link>
               <p class="card-text mb-1">{{ product.description }}</p>
-              <small class="mb-3">{{ product.price | currency }}</small>
-              <small class="d-block mt-1">
-                <router-link
-                  :to="{ name: 'detail', params: { id: product.id } }"
-                >查看詳情</router-link>
-              </small>
-              <small class="d-block">
-                <a href="#" @click.prevent="addToCart(product.id)">
-                  <i class="fas fa-shopping-cart"></i>
-                  加入購物車
-                </a>
-              </small>
+              <small><del>原價: {{ product.origin_price | currency }}</del></small>
+              <p class="mb-3">{{ product.price | currency }}</p>
+              <a href="#" class="d-block link-add mt-2 btn btn-lg btn-primary" @click.prevent="addToCart(product.id)">
+                <i class="fas fa-shopping-cart"></i>
+                加入購物車
+              </a>
             </div>
           </div>
         </div>
@@ -93,19 +87,36 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .product-header {
   background-image: url(../../assets/imgs/productHeader.jpg);
 }
 
-.card{
+a {
+  text-decoration: none;
+}
+
+.card {
   transition: 0.1s;
-  &-text{
+  width: 75%;
+  @media(max-width: 768px) {
+    width: 90%;
+  }
+  &-text {
     font-size: 12px;
   }
-  &:hover{
+  &:hover {
     transform: scale(1.02);
-    box-shadow: 0px 1px 6px rgba(0,0,0,0.5)
+    box-shadow: 0px 3px 5px rgba(189,195,199,0.7);
+  }
+  &-body {
+    padding: 20px 5px;
+  }
+}
+
+.link {
+  &-add {
+    font-size: 14px;
   }
 }
 
