@@ -13,7 +13,6 @@ const routes = [
   },
   {
     path: '/',
-    name: 'front',
     component: () => import('@/views/front/Index.vue'),
     children: [
       {
@@ -122,7 +121,6 @@ const routes = [
       },
       {
         path: 'virtual',
-        name: 'Adminfront',
         component: () => import('@/views/front/Index.vue'),
         children: [
           {

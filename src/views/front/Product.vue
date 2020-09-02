@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="row mt-3 d-flex align-items-center justify-content-center">
+    <div class="row d-flex align-items-center justify-content-center">
       <div class="col-md-10 pl-5 pt-5 bg-cover product-header" style="height:350px">
         <p class="h3 text-primary font-weight-bolder">2020秋冬 全新感受</p>
         <small class="d-block mb-3 text-primary">CLAIRE'S團隊打造的新色彩美學</small>
@@ -19,7 +19,7 @@
               <small>
                 <del>原價: {{ product.origin_price | currency }}</del>
               </small>
-              <p class="mb-3">{{ product.price | currency }}</p>
+              <p class="mb-3">特惠價: {{ product.price | currency }}</p>
               <a href="#" class="d-block link-add mt-2 btn btn-lg btn-primary" @click.prevent="addToCart(product.id)">
                 <i class="fas fa-shopping-cart"></i>
                 加入購物車

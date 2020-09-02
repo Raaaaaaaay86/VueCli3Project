@@ -1,7 +1,7 @@
 <template>
   <div>
     <!--Carousel-->
-    <div class="row mt-3">
+    <div class="row">
       <div id="carouselExampleCaptions" data-ride="carousel" data-interval="5000" class="carousel slide carousel-fade">
         <div class="carousel-inner">
           <div class="carousel-item active" style="max-height:500px">
@@ -121,7 +121,7 @@
         </div>
       </div>
     </div>
-    <div class="row no-gutters mt-15 mt-md-30">
+    <div class="row no-gutters mt-15 mt-md-30 mb-30">
       <div class="col-md-9">
         <div class="productIntro-img bg-cover" :style="{ backgroundImage: 'url(' + require('@/assets/imgs/make02.jpg') + ')' }"></div>
       </div>
