@@ -195,13 +195,13 @@ export default {
   },
   computed: {
     product() {
-      return this.$store.state.product;
+      return this.$store.state.ProductsModule.product;
     },
     isClicked() {
-      return this.$store.state.isClicked;
+      return this.$store.state.ProductsModule.isClicked;
     },
     randomProducts() {
-      return this.$store.state.randomProducts;
+      return this.$store.state.ProductsModule.randomProducts;
     },
   },
   created() {

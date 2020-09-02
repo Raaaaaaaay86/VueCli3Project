@@ -162,7 +162,7 @@ export default {
   },
   computed: {
     randomProducts() {
-      return this.$store.state.randomCarousel;
+      return this.$store.state.ProductsModule.randomCarousel;
     },
   },
   created() {

@@ -51,10 +51,10 @@ export default {
   },
   computed: {
     products() {
-      return this.$store.state.products;
+      return this.$store.state.ProductsModule.products;
     },
     pagination() {
-      return this.$store.state.pagination;
+      return this.$store.state.ProductsModule.pagination;
     },
   },
   created() {
