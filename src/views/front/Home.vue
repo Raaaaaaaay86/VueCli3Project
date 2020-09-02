@@ -2,27 +2,29 @@
   <div>
     <!--Carousel-->
     <div class="row">
-      <div id="carouselExampleCaptions" data-ride="carousel" data-interval="5000" class="carousel slide carousel-fade">
+      <div class="carousel w-100 slide carousel-fade" id="carouselExampleCaptions" data-ride="carousel" data-interval="100000">
         <div class="carousel-inner">
-          <div class="carousel-item active" style="max-height:500px">
-            <img style src="@/assets/imgs/carousel0102.jpg" class="d-block w-100 position-relative" />
-            <!--ROUTER LINK-->
-            <a href="#" class="circleBtn rounded-circle d-none d-md-flex flex-column position-absolute" style="top:40%;left:75%;">
-              <div class="bg-white rounded-circle d-flex flex-column justify-content-center align-items-center" style="width:150px;height:150px">
-                <span class="text-center h6">
-                  2020
-                  <br />A/W LookBook
-                </span>
-              </div>
-            </a>
+          <div class="carousel-item">
+            <div
+              :style="{ backgroundImage: 'url(' + require('@/assets/imgs/carousel0102.jpg') + ')' }"
+              class="carousel-img bg-cover"
+            >
+            <div class="circleBtn">
+              <p>2020</p>
+              <p>A/W 全新系列</p>
+            </div>
+            </div>
           </div>
-          <div class="carousel-item" style="max-height:500px">
-            <img style src="@/assets/imgs/carousel0202.jpg" class="d-block w-100 position-relative" />
-            <div class="d-none d-md-block text-white position-absolute" style="top:20%;left:15%">
-              <p class="mb-0 h2 font-weight-bold">世界上 ,</p>
-              <p class="mb-3 h2 font-weight-bold">只有你最了解自己</p>
-              <!--ROUTER LINK-->
-              <router-link to="/products/all" class="btn btn-primary">了解更多</router-link>
+          <div class="carousel-item active">
+            <div
+              :style="{ backgroundImage: 'url(' + require('@/assets/imgs/carousel0202.jpg') + ')' }"
+              class="carousel-img bg-cover"
+            >
+            <div class="slideQuote">
+            <p>世界上,</p>
+            <p>只有你最了解自己</p>
+            <button class="btn btn-primary">了解更多</button>
+            </div>
             </div>
           </div>
         </div>
@@ -330,11 +332,78 @@ export default {
   background-image: url(../../assets/imgs/head02.jpg);
 }
 
+.carousel {
+  &-img{
+    height: 500px;
+    @media(max-width: 768px) {
+      height: 350px;
+    }
+  }
+}
+
 .circleBtn {
+  width: 150px;
+  height: 150px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 100px;
+  background-color: #fff;
   border: 1px solid lightgrey;
   transition: 0.3s;
+  position: absolute;
+  top: 40%;
+  left: 75%;
+  p {
+    font-weight: 500;
+    font-size: 16px;
+    margin-bottom: 0;
+  }
+  @media (max-width: 960px) {
+    left: 66%;
+  }
+  @media (max-width: 576px) {
+    width: 110px;
+    height: 110px;
+    top: 55%;
+    left: 10%;
+    p{
+      font-size: 14px;
+    }
+  }
   &:hover {
+    transform: scale(1.02) translate(-5px,-5px);
     box-shadow: 0px 0px 10px black;
+  }
+}
+
+.slideQuote {
+  width: 260px;
+  height: 130px;
+  position: absolute;
+  top:20%;
+  left:15%;
+  transition: all 0.3s;
+  p {
+    margin-bottom: 0px;
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 1.2;
+    color: white;
+    &:last-of-type{
+      margin-bottom: 0.5em;
+    }
+  }
+  @media(max-width: 768px) {
+    top: 10%;
+    left: 6%;
+    p {
+      font-size: 24px;
+    }
+  }
+  @media (max-width: 576px) {
+    left: 10%;
   }
 }
 </style>
