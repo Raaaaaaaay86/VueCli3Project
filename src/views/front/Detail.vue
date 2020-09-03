@@ -198,7 +198,7 @@ export default {
       return this.$store.state.ProductsModule.product;
     },
     isClicked() {
-      return this.$store.state.ProductsModule.isClicked;
+      return this.$store.state.isClicked;
     },
     randomProducts() {
       return this.$store.state.ProductsModule.randomProducts;
