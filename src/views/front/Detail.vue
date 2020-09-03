@@ -252,4 +252,10 @@ a {
     padding: 20px 5px;
   }
 }
+
+.link {
+  &-add {
+    font-size: 14px;
+  }
+}
 </style>
