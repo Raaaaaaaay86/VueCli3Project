@@ -67,12 +67,10 @@
 
 <script>
 import $ from 'jquery';
+import { mapActions } from 'vuex';
 
 export default {
   methods: {
-    getCarts() {
-      this.$store.dispatch('getCarts');
-    },
     removeCart(OrderId) {
       this.$store.dispatch('removeCart', OrderId);
     },
@@ -87,6 +85,7 @@ export default {
         }
       });
     },
+    ...mapActions(['getCarts']),
   },
   computed: {
     carts() {

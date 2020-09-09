@@ -175,6 +175,7 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex';
 
 export default {
   data() {
@@ -189,9 +190,7 @@ export default {
     addToCart(id, qty = 1) {
       this.$store.dispatch('addToCart', { id, qty });
     },
-    getRandomProducts() {
-      this.$store.dispatch('getRandom');
-    },
+    ...mapActions(['getRandom']),
   },
   computed: {
     product() {
@@ -206,7 +205,7 @@ export default {
   },
   created() {
     this.getSingle();
-    this.getRandomProducts();
+    this.getRandom();
   },
   watch: {
     $route() {

@@ -148,6 +148,7 @@ import $ from 'jquery';
 import 'slick-carousel';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import { mapActions } from 'vuex';
 
 export default {
   data() {
@@ -156,9 +157,7 @@ export default {
     };
   },
   methods: {
-    getRandomProducts() {
-      this.$store.dispatch('getRandom');
-    },
+    ...mapActions(['getRandom']),
   },
   computed: {
     randomProducts() {
@@ -166,7 +165,7 @@ export default {
     },
   },
   created() {
-    this.getRandomProducts();
+    this.getRandom();
     window.scrollTo(0, 0);
   },
   updated() {
