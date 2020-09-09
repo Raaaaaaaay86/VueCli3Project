@@ -1,10 +1,7 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import axios from 'axios';
-import Vueaxios from 'vue-axios';
 
 Vue.use(VueRouter);
-Vue.use(Vueaxios, axios);
 
 const routes = [
   {

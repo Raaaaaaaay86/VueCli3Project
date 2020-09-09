@@ -134,9 +134,6 @@ export default {
     };
   },
   methods: {
-    getCarts() {
-      this.$store.dispatch('getCarts');
-    },
     removeCart(OrderId) {
       this.$store.dispatch('removeCart', OrderId);
     },

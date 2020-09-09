@@ -21,7 +21,7 @@ export default {
     getProducts(context, payload) {
       const api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_CUSTOM}/products?page=${payload.page}`;
       const allApi = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_CUSTOM}/products/all`;
-      // payload: { page, cat: this.$route.params.cat };
+
       if (payload.cat === 'all') {
         axios.get(api).then((response) => {
           context.commit('GET_PRODUCTS', {
